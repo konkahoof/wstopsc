@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %} Sites {% endblock %}
+{% block content %}  
+    <style>
+        a.button {border-radius: 50%;width: 25px;height: 25px;font-size: 12px;display: inline-block;text-align: center;box-sizing: border-box;background-color: buttonface;padding: 6px;box-shadow: 0px 1px 2px rgba(0, 0, 0);}
+        a{ text-decoration: none;}
+        .site{height: 25px; list-style: none;width: 94%; min-width: 275px;margin: 1px; border: 1px solid #ffbc00;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.06);padding: 5px;}
+        ol{display: table;}
+        ol li { color: #4F4F4F; max-width: 500px;padding: 5px;margin: 5px auto;border: 1px solid #eee;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.06);}
+        .sitename{height: 30px;}
+    </style>   
+        <a href="/logout" title="çıxış" style="position: absolute;background: chocolate;right: 0;border-radius: 15px;padding: 10px;">
+            <svg fill="#000000" width="50px" viewBox="0 0 36 36" version="1.1"  preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path d="M7,6H23v9.8h2V6a2,2,0,0,0-2-2H7A2,2,0,0,0,5,6V30a2,2,0,0,0,2,2H23a2,2,0,0,0,2-2H7Z" class="clr-i-outline clr-i-outline-path-1"></path>
+                <path d="M28.16,17.28a1,1,0,0,0-1.41,1.41L30.13,22H15.63a1,1,0,0,0-1,1,1,1,0,0,0,1,1h14.5l-3.38,3.46a1,1,0,1,0,1.41,1.41L34,23.07Z" class="clr-i-outline clr-i-outline-path-2"></path>
+            </svg>
+        </a>
+    <div style="max-width: 600px;float: left;height: 98vh;overflow: scroll;overflow-x: auto;">
+        {% if sites %}
+            {% for site in sites %}
+                <div class="site"> 
+                    <span style="float: right;">
+                        <a onclick='cls("{{site }}")' id="close_{{site }}" class="button" title="bağla" style="display: none;"><i class="fas fa-close"></i></a>
+                        <a onclick='getData("{{site }}")' class="button" title="Xəbərləri Göstər"><i class="fas fa-clock" style="color:lightblue;text-shadow:2px 2px 4px #000000;"></i></a> 
+                        <a href="{{site }}" target="_blank" class="button" title="sayta keç"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <!--a href="/res?url={{site}}" target="_blank" class="button" title="json"><i class="fa-brands fa-jsfiddle"></i></a-->
+                    </span>
+                    <div class="sitename">{{site.split("/")[2]}}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Maalesef, dosya bulunamadı.</p>
+        {% endif %}
+    </div>
+    
+    <div id="site" style="border: 1px solid #ccc;padding: 3px;width: 200px;margin: 0 auto;"></div>
+    <ol id="veri_" style="border: 1px solid #ccc;padding: 3px;float: left;margin-left: 30px;"></ol>
+    
+    <script>
+        function getData(site) {
+            document.getElementById("close_"+site).style.display = "";
+            var xhr = new XMLHttpRequest();
+            var url = "/res?url="+site
+            var veri= "veri_"
+            xhr.onreadystatechange = function() {    
+                    document.getElementById("site").innerHTML = "<h4>"+site+"</h4>";        
+                if (this.readyState == 4 && this.status == 500) {
+                    console.log(this.status)                
+                    document.getElementById(veri).innerHTML = "<li>xeta baş verdi (500)</li>";
+                }
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.responseText);
+                    var i, listeUzunluk = data.length;
+                    var lis =[]
+                    for(i = 0; i < listeUzunluk; i++) {
+                        lis=lis+"<li><a href='"+data[i]["news_link"]+"'  target='_blank'>"+data[i]["news_title"]+"</a></li>"
+                    }
+                    //document.getElementById(veri).innerHTML = JSON.stringify(lis);
+                    document.getElementById(veri).innerHTML = lis;
+                }
+            };        
+            xhr.open("GET", url);
+            xhr.send();
+        }
+        function cls(veri){
+            document.getElementById("close_"+veri).style.display = "none";
+            document.getElementById("veri_").innerHTML = ""
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
