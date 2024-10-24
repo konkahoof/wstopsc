@@ -5,9 +5,9 @@
         "mainblok": "ul.lent-box",
         "item": "li.lent-box-list",
         "title": "h5",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
+        "postblok":"article.single-post-item",
+        "posttitle":"h1",
+        "postext":"div.post-content"
     },
     {
         "site": "https://ednews.net/",
@@ -15,9 +15,9 @@
         "mainblok": "div.bg-gray1",
         "item": "a",
         "title": "h5",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
+        "postblok":"div.tc-main-post-style1",
+        "posttitle":"h2.title",
+        "postext":"div.tc-main-post-content"
     },
     {
         "site": "https://pressklub.az/",
@@ -25,9 +25,9 @@
         "mainblok": "div.single_author_analitics_side",
         "item": "a",
         "title": "p.single_author_side_simple_text",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
+        "postblok":"div.news_content",
+        "posttitle":"h3.panel_check",
+        "postext":"div.news_content_text"
     },
     {
         "site": "https://apa.az/",
@@ -37,7 +37,7 @@
         "title": "h2",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://report.az/",
@@ -47,7 +47,7 @@
         "title": "span.feed-news-title",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://aznews.az/",
@@ -57,7 +57,7 @@
         "title": "h3",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://qol.az/",
@@ -67,7 +67,7 @@
         "title": "p",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://az.trend.az/",
@@ -77,7 +77,7 @@
         "title": "h4",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://visiontv.az/",
@@ -87,7 +87,7 @@
         "title": "p",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://bakupost.az/",
@@ -97,7 +97,7 @@
         "title": "div.title",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://ordu.az/",
@@ -107,7 +107,7 @@
         "title": "a",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://news.day.az/",
@@ -124,7 +124,7 @@
         "title": "span.d-none",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://news.milli.az/",
@@ -134,7 +134,7 @@
         "title": "strong.title",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://qafqazinfo.az/",
@@ -144,7 +144,7 @@
         "title": "h4",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://azvision.az/",
@@ -154,7 +154,7 @@
         "title": "h2",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://moderator.az/",
@@ -164,7 +164,7 @@
         "title": "div.sect-nw-info",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://modern.az/",
@@ -174,7 +174,7 @@
         "title": "div.last_title",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://pia.az/",
@@ -184,7 +184,7 @@
         "title": "h3",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://publika.az/",
@@ -194,7 +194,7 @@
         "title": "h2",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://azpolitika.info/",
@@ -204,7 +204,7 @@
         "title": "a.title",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://sia.az/",
@@ -214,7 +214,7 @@
         "title": "h3",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://mia.az/",
@@ -224,7 +224,7 @@
         "title": "a",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://axar.az/",
@@ -234,7 +234,7 @@
         "title": "h3",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://baku.ws/",
@@ -244,7 +244,7 @@
         "title": "h2",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://qaynarinfo.az/",
@@ -254,7 +254,7 @@
         "title": "h3",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://sonxeber.az/",
@@ -264,7 +264,7 @@
         "title": "h3",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://big.az/",
@@ -274,17 +274,7 @@
         "title": "h3",
         "postblok":"",
         "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://avropa.info/",
-        "urls": "?s=safeguard",
-        "mainblok": "html",
-        "item": "h3",
-        "title": "a",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://afn.az/",
@@ -294,7 +284,7 @@
         "title": "h2",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://baymedia.az/",
@@ -304,7 +294,7 @@
         "title": "h4",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://veteninfo.az/",
@@ -314,7 +304,7 @@
         "title": "div.article-title",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://xeberler.az/",
@@ -324,7 +314,7 @@
         "title": "h3",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://avrasiya.net/",
@@ -334,7 +324,7 @@
         "title": "a.title",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://azxeber.com/",
@@ -344,7 +334,7 @@
         "title": "h2",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://olke.az/",
@@ -354,17 +344,7 @@
         "title": "h2",
         "postblok":"",
         "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://aktual.az/",
-        "urls": "",
-        "mainblok": "div.lb_last_minute",
-        "item": "li",
-        "title": "article",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://yenilik.az/",
@@ -374,7 +354,7 @@
         "title": "strong",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://interpress.az/",
@@ -384,7 +364,7 @@
         "title": "span.title",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://qaziler.az/",
@@ -394,7 +374,7 @@
         "title": "div.title",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://sherg.az/",
@@ -404,7 +384,7 @@
         "title": "h5",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://teleqraf.com/",
@@ -414,7 +394,7 @@
         "title": "h3",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://yeniavaz.com/",
@@ -424,7 +404,7 @@
         "title": "h3",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://ona.az/",
@@ -434,7 +414,7 @@
         "title": "a",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://xural.com/",
@@ -444,7 +424,7 @@
         "title": "h2",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://bizim.media/",
@@ -454,7 +434,7 @@
         "title": "h2",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://cebheinfo.az/",
@@ -464,7 +444,7 @@
         "title": "h2",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://globalinfo.az/",
@@ -474,147 +454,7 @@
         "title": "a",
         "postblok":"",
         "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://azertag.az/",
-        "urls": "son-xeberler",
-        "mainblok": "div.latest-news",
-        "item": "div.latest-news-post",
-        "title": "h2.entry-title",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://musavat.com/",
-        "urls": "news-of-day",
-        "mainblok": "div.bg-white",
-        "item": "div.col-md-3",
-        "title": "strong",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://7news.az/",
-        "urls": "",
-        "mainblok": "body",
-        "item": "div.news-block-item",
-        "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://medianews.az/",
-        "urls": "?post_type=post",
-        "mainblok": "div.jeg_posts",
-        "item": "article.jeg_post",
-        "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://armiya.az/",
-        "urls": "",
-        "mainblok": "div.news-lent",
-        "item": "li",
-        "title": "a",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://haqqin.az/",
-        "urls": "news",
-        "mainblok": "main.news-list",
-        "item": "a",
-        "title": "div.news-item__heading",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://1news.az/",
-        "urls": "lenta/",
-        "mainblok": "div.newsListHolder",
-        "item": "a",
-        "title": "span.title",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://caliber.az/",
-        "urls": "archive/news",
-        "mainblok": "div.float_blocks",
-        "item": "div.float_block",
-        "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://minval.az/",
-        "urls": "",
-        "mainblok": "div.lenta-section",
-        "item": "article",
-        "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "http://bakuinform.az/",
-        "urls": "",
-        "mainblok": "div.swiper-wrapper",
-        "item": "div.swiper-slide",
-        "title": "a.index-hero-slider-item-title",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://aktor.az/",
-        "urls": "?cat=1",
-        "mainblok": "div.cm-posts",
-        "item": "article.type-post",
-        "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://arazmedia.az/",
-        "urls": "",
-        "mainblok": "div.blog-posts-list",
-        "item": "div.blog-post",
-        "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://femida.az/",
-        "urls": "",
-        "mainblok": "ul.lent",
-        "item": "li",
-        "title": "a",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://strateq.az/",
-        "urls": "",
-        "mainblok": "div.orta",
-        "item": "div.lentx",
-        "title": "a.le",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
+        "postext":""
     },
     {
         "site": "https://axsam.az/",
@@ -624,6 +464,146 @@
         "title": "h2",
         "postblok":"",
         "posttitle":"",
-        "post":""
+        "postext":""
+    },
+    {
+        "site": "https://azertag.az/",
+        "urls": "son-xeberler",
+        "mainblok": "div.latest-news",
+        "item": "div.latest-news-post",
+        "title": "h2.entry-title",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
+    },
+    {
+        "site": "https://musavat.com/",
+        "urls": "news-of-day",
+        "mainblok": "div.bg-white",
+        "item": "div.col-md-3",
+        "title": "strong",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
+    },
+    {
+        "site": "https://7news.az/",
+        "urls": "",
+        "mainblok": "body",
+        "item": "div.news-block-item",
+        "title": "h2",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
+    },
+    {
+        "site": "https://medianews.az/",
+        "urls": "?post_type=post",
+        "mainblok": "div.jeg_posts",
+        "item": "article.jeg_post",
+        "title": "h3",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
+    },
+    {
+        "site": "https://aktual.az/",
+        "urls": "",
+        "mainblok": "div.lb_last_minute",
+        "item": "li",
+        "title": "article",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
+    },
+    {
+        "site": "https://avropa.info/",
+        "urls": "?s=safeguard",
+        "mainblok": "html",
+        "item": "h3",
+        "title": "a",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
+    },
+    {
+        "site": "https://armiya.az/",
+        "urls": "",
+        "mainblok": "div.news-lent",
+        "item": "li",
+        "title": "a",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
+    },
+    {
+        "site": "https://haqqin.az/",
+        "urls": "news",
+        "mainblok": "main.news-list",
+        "item": "a",
+        "title": "div.news-item__heading",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
+    },
+    {
+        "site": "https://1news.az/",
+        "urls": "lenta/",
+        "mainblok": "div.newsListHolder",
+        "item": "a",
+        "title": "span.title",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
+    },
+    {
+        "site": "https://caliber.az/",
+        "urls": "archive/news",
+        "mainblok": "div.float_blocks",
+        "item": "div.float_block",
+        "title": "h2",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
+    },
+    {
+        "site": "https://minval.az/",
+        "urls": "",
+        "mainblok": "div.lenta-section",
+        "item": "article",
+        "title": "h3",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
+    },
+    {
+        "site": "http://bakuinform.az/",
+        "urls": "",
+        "mainblok": "div.swiper-wrapper",
+        "item": "div.swiper-slide",
+        "title": "a.index-hero-slider-item-title",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
+    },
+    {
+        "site": "https://aktor.az/",
+        "urls": "?cat=1",
+        "mainblok": "div.cm-posts",
+        "item": "article.type-post",
+        "title": "h2",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
+    },
+    {
+        "site": "https://arazmedia.az/",
+        "urls": "",
+        "mainblok": "div.blog-posts-list",
+        "item": "div.blog-post",
+        "title": "h3",
+        "postblok":"",
+        "posttitle":"",
+        "postext":""
     }
 ]
