@@ -40,9 +40,10 @@ def scraper():
     headersf = {
         
         "referer":"https://google.com",
-        "cookie":"_ym_d=1718894274;_ym_uid=1718894274689556850;cf_clearance=zHQDGp79IGPynjKH6mKWCwkc9hCkYyLNKkaFLkuw.us-1682327995-0-150;YMQ2019=05e9b270802b5b41869fc4e3e26fb910;lang=az;current_lang=az",
+        "cookie":"PHPSESSID=fpkcenmecqfg41lru1e2tblb47; _ym_uid=1729545385783083829; _ym_d=1729545385; news-3243124=viewed;cf_clearance=zHQDGp79IGPynjKH6mKWCwkc9hCkYyLNKkaFLkuw.us-1682327995-0-150;YMQ2019=05e9b270802b5b41869fc4e3e26fb910;lang=az;current_lang=az",
         "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"}
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+        }
     if 'url' in request.args and request.args.get('url') is not None:
         url = request.args.get('url')
         print(f"Requested URL: {url}")
