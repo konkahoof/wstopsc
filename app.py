@@ -4,6 +4,7 @@ import hashlib
 import json
 from bs4 import BeautifulSoup
 import requests
+import re
 
 app = Flask(__name__)
 
@@ -64,15 +65,12 @@ def scraper():
                         if url == "https://caliber.az/":
                             haber_linki = haber_div.find_all('a')[1]['href']
                     except:  
-                        haber_linki = "url-not-found"
-                        if item['site'] == "https://interpress.az/" or item['site'] == "https://apa.az/" or item['site'] == "https://1news.az/" or item['site'] == "https://bizim.media/" or item['site'] == "https://moderator.az/" or item['site'] == "https://ednews.net/" or item['site'] == "https://pressklub.az/" or item['site'] == "https://haqqin.az/":
-                            haber_linki = haber_div['href']
-                            
+                        haber_linki = haber_div['href'] 
                     if haber_linki.split("/")[0][0:4] != "http":
+                        haber_linki=haber_linki[1:] if haber_linki.startswith('/') else haber_linki
                         haber_linki= item['site']+haber_linki
-                    news["news_link"]  = haber_linki
-                    if item['site'] == "https://azpolitika.info/" or item['site'] == "https://oxu.az/" or item['site'] == "https://azertag.az/" or item['site'] == "https://musavat.com/" or item['site'] == "https://cebheinfo.az/" or item['site'] == "https://ednews.net/" or item['site'] == "https://baymedia.az/":
-                        news["news_link"]  = haber_linki.replace("//","/")
+                    news["news_link"]  = haber_linki                        
+
                     try:
                         haber_baslik=haber_div.select_one(item['title']).text.strip()
                     except:
