@@ -39,9 +39,7 @@ def home():
 def scraper():
     #dia musavat yenicag  cf_clearance=8SFoZzwGXsViOZzXANRFQnIb_N4h328Id4TQGYUbuxs-1680443551-0-160;
     headersf = {
-        
-        "referer":"https://google.com",
-        "cookie":"PHPSESSID=fpkcenmecqfg41lru1e2tblb47; _ym_uid=1729545385783083829; _ym_d=1729545385; news-3243124=viewed;cf_clearance=zHQDGp79IGPynjKH6mKWCwkc9hCkYyLNKkaFLkuw.us-1682327995-0-150;YMQ2019=05e9b270802b5b41869fc4e3e26fb910;lang=az;current_lang=az",
+        "cookie":"cf_clearance=zHQDGp79IGPynjKH6mKWCwkc9hCkYyLNKkaFLkuw.us-1682327995-0-150;YMQ2019=05e9b270802b5b41869fc4e3e26fb910;lang=az;current_lang=az",
         "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
         }
@@ -65,7 +63,10 @@ def scraper():
                         if url == "https://caliber.az/":
                             haber_linki = haber_div.find_all('a')[1]['href']
                     except:  
-                        haber_linki = haber_div['href'] 
+                        try:
+                            haber_linki = haber_div['href'] 
+                        except:
+                            continue
                     if haber_linki.split("/")[0][0:4] != "http":
                         haber_linki=haber_linki[1:] if haber_linki.startswith('/') else haber_linki
                         haber_linki= item['site']+haber_linki
