@@ -204,10 +204,39 @@
 
 
     <script>
+
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        function getCookie(name) {
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookies = decodedCookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let c = cookies[i].trim();
+                if (c.indexOf(name + "=") == 0) {
+                    return c.substring(name.length + 1, c.length);
+                }
+            }
+            return "";
+        }
+
+
         document.getElementById("blok").style.display = "none";
         function getData(site) {
+            
+            const lastButton = getCookie("lastButton");
+            if (lastButton) {
+                document.getElementById("hide_"+lastButton).style.display = "";
+                document.getElementById("close_"+lastButton).style.display = "none";
+            } 
+
             document.getElementById("close_"+site).style.display = "";
-            //document.getElementById("hide_"+site).style.display = "none";
+            setCookie("lastButton", site, 1);
+            document.getElementById("hide_"+site).style.display = "none";
             document.getElementById("blok").style.display = "";
             document.getElementById("veri_").innerHTML = ""
             document.getElementById("site").innerHTML = ""
@@ -236,6 +265,11 @@
             xhr.send();
         }
         function cls(veri){
+            const lastButton = getCookie("lastButton");
+
+            if (lastButton === veri) {
+                document.getElementById("hide_"+lastButton).style.display = "";
+            } 
             document.getElementById("close_"+veri).style.display = "none";
             document.getElementById("blok").style.display = "none";
             document.getElementById("veri_").innerHTML = ""
