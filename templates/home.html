@@ -4,26 +4,18 @@
     <style>
         a.button {border-radius: 50%;width: 25px;height: 25px;font-size: 12px;display: inline-block;text-align: center;box-sizing: border-box;background-color: buttonface;padding: 6px;box-shadow: 0px 1px 2px rgba(0, 0, 0);}
         a{ text-decoration: none;}
-        .site{height: 25px; list-style: none;width: 94%; min-width: 275px;margin: 1px; border: 1px solid #ffbc00;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.06);padding: 5px;}
         ol{display: table;}
         ol li { color: #4F4F4F; max-width: 500px;padding: 5px;margin: 5px auto;border: 1px solid #eee;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.06);}
-        .sitename{height: 30px;}
-    </style>
-    <style>
-        
         
         :root {
             --surface1: hsl(0 0% 90%);
-            --surface2: hsl(0 0% 100%);
-        
+            --surface2: hsl(0 0% 100%);        
             --text1: hsl(0 0% 20%);
-        }
-        
+        }        
         html {
             block-size: 100%;
             inline-size: 100%;
-        }
-        
+        }        
         body {
             min-block-size: 100%;
             min-inline-size: 100%;
@@ -36,20 +28,18 @@
             font-family: system-ui, sans-serif;
             background-color: var(--surface1);
             color: var(--text1);
-        }
-        
+        }        
         .overflow-x {
             overflow-x: auto;
             overscroll-behavior-x: contain;
         }
-        .overflow-x ,.cardbox{
+        .overflow-x, .cardbox{
             border: 1px solid hsl(0 0% 80%);
             border-radius: 1ex;
             background-color: var(--surface2);
             padding: 2rem;
             box-shadow: 0 0 40px -10px rgba(0, 0, 0, .4);
-        }
-        
+        }        
         .horizontal-friends-list {
             display: grid;
             grid-auto-flow: column;
@@ -84,8 +74,7 @@
                 display: inline-block;
                 inline-size: 10ch;
                 block-size: 10ch;
-                border-radius: 50%;
-        
+                border-radius: 50%;        
                 background: 
                 radial-gradient(hsl(0 0% 0% / 15%) 60%, transparent 0),
                 radial-gradient(white 65%, transparent 0),
@@ -116,23 +105,17 @@
         .scrollbar{
             background: #F5F5F5;
             overflow-x: scroll;
-        }
-       
-        .scrollbar::-webkit-scrollbar-track
-        {
+        }       
+        .scrollbar::-webkit-scrollbar-track{
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
             background-color: #F5F5F5;
             border-radius: 10px;
         }
-
-        .scrollbar::-webkit-scrollbar
-        {
+        .scrollbar::-webkit-scrollbar{
             width: 10px;
             background-color: #F5F5F5;
         }
-
-        .scrollbar::-webkit-scrollbar-thumb
-        {
+        .scrollbar::-webkit-scrollbar-thumb{
             background-color: #3366FF;
             border-radius: 10px;
         }
@@ -149,34 +132,35 @@
             --tw-border-spacing-y: 0;
             display: inline-block;
         }
-
-
     </style>
+
     <section class="overflow-x scrollbar">
       
         <div class="horizontal-friends-list">
             {% if sites %}
             {% for site in sites %}
+            
             <figure>
                 <picture>
-                    <img src="https://www.google.com/s2/favicons?domain={{site}}">
+                    {% if site == "https://moderator.az/" or site=="https://qaynarinfo.az/" or site == "https://minval.az/"  or site == "https://poliqon.info/"  or site == "https://7news.az/"  or site == "https://olke.az/"  or site == "https://azxeber.com/" %}
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAABGtJREFUeF7tmD1LFmAYRq97ERxydA6MgtAaWmqLGtqKWrTm" alt="{{site}}">
+                    {% else %}                        
+                        <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=16&url={{site}}" alt="{{site}}">
+                    {% endif %}
                 </picture>
                 <figcaption>{{site.split("/")[2]}}</figcaption>
                 <span style="float: right;">
-                    <a onclick='cls("{{site }}")' id="close_{{site }}" class="btncon" title="bağla" style="display: none;"><svg fill="#1565C0" width="16px" viewBox="-6 -6 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-close"><path d='M7.314 5.9l3.535-3.536A1 1 0 1 0 9.435.95L5.899 4.485 2.364.95A1 1 0 1 0 .95 2.364l3.535 3.535L.95 9.435a1 1 0 1 0 1.414 1.414l3.535-3.535 3.536 3.535a1 1 0 1 0 1.414-1.414L7.314 5.899z' /></svg></a>
-                    <a onclick='getData("{{site }}")' id="hide_{{site }}" class="btncon" title="Xəbərləri Göstər">
+                    <a onclick='cls("{{site }}")' id="close_{{site }}" class="btncon" title="bağla" style="display: none;" aria-label="{{site}} bağla"><svg fill="#1565C0" width="16px" viewBox="-6 -6 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-close"><path d='M7.314 5.9l3.535-3.536A1 1 0 1 0 9.435.95L5.899 4.485 2.364.95A1 1 0 1 0 .95 2.364l3.535 3.535L.95 9.435a1 1 0 1 0 1.414 1.414l3.535-3.535 3.536 3.535a1 1 0 1 0 1.414-1.414L7.314 5.899z' /></svg></a>
+                    <a onclick='getData("{{site }}")' id="hide_{{site }}" class="btncon" title="Xəbərləri Göstər" aria-label="{{site}} Xəbərləri Göstər">
                         <svg width="16px" viewBox="0 0 48 48" version="1" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 48 48">
-                            <g fill="#1565C0">
-                                <path d="M13,13c0-3.3,2.7-6,6-6h10c3.3,0,6,2.7,6,6h4c0-5.5-4.5-10-10-10H19C13.5,3,9,7.5,9,13v11.2h4V13z"/>
-                                <polygon points="4.6,22 11,30.4 17.4,22"/>
-                            </g>
-                            <g fill="#1565C0">
-                                <path d="M35,35c0,3.3-2.7,6-6,6H19c-3.3,0-6-2.7-6-6H9c0,5.5,4.5,10,10,10h10c5.5,0,10-4.5,10-10V23h-4V35z"/>
-                                <polygon points="30.6,26 37,17.6 43.4,26"/>
-                            </g>
-                        </svg>                    </a> 
-                    <a href="{{site }}" target="_blank" class="btncon" title="sayta keç"><svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg></a>
-                    <!--a href="/res?url={{site}}" target="_blank" class="button" title="json"><svg width="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 19H16C17.1046 19 18 18.1046 18 17V14.5616C18 13.6438 18.6246 12.8439 19.5149 12.6213L21.0299 12.2425C21.2823 12.1794 21.2823 11.8206 21.0299 11.7575L19.5149 11.3787C18.6246 11.1561 18 10.3562 18 9.43845V5H14" stroke="#1565C0" stroke-width="2"/><path d="M10 5H8C6.89543 5 6 5.89543 6 7V9.43845C6 10.3562 5.37541 11.1561 4.48507 11.3787L2.97014 11.7575C2.71765 11.8206 2.71765 12.1794 2.97014 12.2425L4.48507 12.6213C5.37541 12.8439 6 13.6438 6 14.5616V19H10" stroke="#1565C0" stroke-width="2"/></svg></a-->
+                            <g fill="#1565C0"><path d="M13,13c0-3.3,2.7-6,6-6h10c3.3,0,6,2.7,6,6h4c0-5.5-4.5-10-10-10H19C13.5,3,9,7.5,9,13v11.2h4V13z"/>
+                                <polygon points="4.6,22 11,30.4 17.4,22"/></g>
+                            <g fill="#1565C0"><path d="M35,35c0,3.3-2.7,6-6,6H19c-3.3,0-6-2.7-6-6H9c0,5.5,4.5,10,10,10h10c5.5,0,10-4.5,10-10V23h-4V35z"/>
+                                <polygon points="30.6,26 37,17.6 43.4,26"/></g>
+                        </svg>
+                    </a> 
+                    <a href="{{site }}" target="_blank" class="btncon" title="sayta keç" aria-label="{{site}} sayta keç"><svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg></a>
+                    <!--a href="/res?url={{site}}" target="_blank" class="btncon" title="json" aria-label="{{site}} json"><svg width="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 19H16C17.1046 19 18 18.1046 18 17V14.5616C18 13.6438 18.6246 12.8439 19.5149 12.6213L21.0299 12.2425C21.2823 12.1794 21.2823 11.8206 21.0299 11.7575L19.5149 11.3787C18.6246 11.1561 18 10.3562 18 9.43845V5H14" stroke="#1565C0" stroke-width="2"/><path d="M10 5H8C6.89543 5 6 5.89543 6 7V9.43845C6 10.3562 5.37541 11.1561 4.48507 11.3787L2.97014 11.7575C2.71765 11.8206 2.71765 12.1794 2.97014 12.2425L4.48507 12.6213C5.37541 12.8439 6 13.6438 6 14.5616V19H10" stroke="#1565C0" stroke-width="2"/></svg></a-->
                 </span>
             </figure>
             {% endfor %}
@@ -187,28 +171,20 @@
       
     </section>
     <section class="cardbox" style="max-width: 500px;min-width: 200px;min-height: 300px;margin: 10px auto;padding: 1rem;" id="blok">
-        <div>
-            <div id="site" style="margin-left: 6%;font-size: 3ch;margin: 1ch 1ch;"></div>
-        </div>
+        <div id="site" style="margin-left: 6%;font-size: 3ch;margin: 1ch 1ch;"></div>
         <hr style="width: 20%;margin: 0px 30px;border: 1px solid #0B5AA2;">
-        <div>
-            <ol id="veri_" style="padding: 3px;float: left;margin-left: 30px;"></ol>
-        </div>
+        <ol id="veri_" style="padding: 3px;float: left;margin-left: 30px;"></ol>
     </section>
     <a href="/logout" title="çıxış" class="btncon logoutbtn"><svg width="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">  <path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12h-9.5m7.5 3l3-3-3-3m-5-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h5a2 2 0 002-2v-1"/></svg></a>
     
 
-
-
     <script>
-
         function setCookie(name, value, days) {
             const date = new Date();
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
             const expires = "expires=" + date.toUTCString();
             document.cookie = name + "=" + value + ";" + expires + ";path=/";
         }
-
         function getCookie(name) {
             const decodedCookie = decodeURIComponent(document.cookie);
             const cookies = decodedCookie.split(';');
@@ -221,10 +197,41 @@
             return "";
         }
 
+        function getPost(post) {
+            console.log(post);
+            var xhr = new XMLHttpRequest();
+            var url = "/haber/"+post+"";
+            var veri= "text";
+            xhr.onreadystatechange = function() {   
+                if (this.readyState == 4 && this.status == 500) {
+                    console.log(this.status)                
+                    document.getElementById(veri).innerHTML = "<p>xeta baş verdi (500)</p>";
+                }
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.status)  
+                    var data = JSON.parse(this.responseText);
+                    console.log(data)
+                    lis='<p>'+data['text']+'</p>'
+                    
+                    //document.getElementById(veri).innerHTML = JSON.stringify(lis);
+                    document.getElementById(veri).innerHTML = lis;
+                }
+            };        
+            xhr.open("GET", url);
+            xhr.send();
+        }
+
+
+
+
+
+
+
+
 
         document.getElementById("blok").style.display = "none";
         function getData(site) {
-            
+
             const lastButton = getCookie("lastButton");
             if (lastButton) {
                 document.getElementById("hide_"+lastButton).style.display = "";
@@ -252,7 +259,7 @@
                     var i, listeUzunluk = data.length;
                     var lis =[]
                     for(i = 0; i < listeUzunluk; i++) {
-                        lis=lis+"<li><a href='"+data[i]["news_link"]+"'  target='_blank'>"+data[i]["news_title"]+"</a></li>"
+                        lis=lis+'<li><a href="'+data[i]["news_link"]+'" data-info="'+data[i]["news_link"]+'" role="button">'+data[i]["news_title"]+'</a><a href="/oku/'+data[i]['news_link']+'" target="_blank" class="btncon" title="oxu" aria-label="oxu" style="padding: 0.4rem;"><svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg></a></li>'
                     }
                     //document.getElementById(veri).innerHTML = JSON.stringify(lis);
                     document.getElementById(veri).innerHTML = lis;
@@ -272,6 +279,8 @@
             document.getElementById("veri_").innerHTML = ""
             document.getElementById("site").innerHTML = ""
         }
-    </script>
+    
+ 
+        </script>
 {% endblock %}
 
