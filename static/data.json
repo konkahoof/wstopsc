@@ -10,16 +10,6 @@
         "post":""
     },
     {
-        "site": "https://azertag.az/",
-        "urls": "son-xeberler",
-        "mainblok": "div.latest-news",
-        "item": "div.latest-news-post",
-        "title": "h2.entry-title",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
         "site": "https://ednews.net/",
         "urls": "",
         "mainblok": "div.bg-gray1",
@@ -95,16 +85,6 @@
         "mainblok": "div.tab-content",
         "item": "div.border-bottom",
         "title": "p",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
-        "site": "https://musavat.com/",
-        "urls": "news-of-day",
-        "mainblok": "div.bg-white",
-        "item": "div.col-md-3",
-        "title": "strong",
         "postblok":"",
         "posttitle":"",
         "post":""
@@ -397,16 +377,6 @@
         "post":""
     },
     {
-        "site": "https://7news.az/",
-        "urls": "",
-        "mainblok": "body",
-        "item": "div.news-block-item",
-        "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "post":""
-    },
-    {
         "site": "https://interpress.az/",
         "urls": "",
         "mainblok": "div.w_widget_lent",
@@ -502,6 +472,36 @@
         "mainblok": "div.newslist",
         "item": "div.newslistitem",
         "title": "a",
+        "postblok":"",
+        "posttitle":"",
+        "post":""
+    },
+    {
+        "site": "https://azertag.az/",
+        "urls": "son-xeberler",
+        "mainblok": "div.latest-news",
+        "item": "div.latest-news-post",
+        "title": "h2.entry-title",
+        "postblok":"",
+        "posttitle":"",
+        "post":""
+    },
+    {
+        "site": "https://musavat.com/",
+        "urls": "news-of-day",
+        "mainblok": "div.bg-white",
+        "item": "div.col-md-3",
+        "title": "strong",
+        "postblok":"",
+        "posttitle":"",
+        "post":""
+    },
+    {
+        "site": "https://7news.az/",
+        "urls": "",
+        "mainblok": "body",
+        "item": "div.news-block-item",
+        "title": "h2",
         "postblok":"",
         "posttitle":"",
         "post":""
