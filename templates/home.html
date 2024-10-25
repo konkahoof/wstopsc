@@ -133,6 +133,7 @@
             display: inline-block;
         }
         .haberdivi img,.haberdivi iframe,.haberdivi{max-width: 100% !important;}
+        .haberdivi{line-height: 22px;font-size: 17px;}
     </style>
 
     <section class="overflow-x scrollbar">
@@ -199,22 +200,35 @@
         }
 
 
+        
+        
+        setCookie("lastView", "", 1);
+        setCookie("lastButton", "", 1);
 
-
-
+        function clearCookie(las=""){
+            const lastView = getCookie("lastView");            
+            if ( lastView == las) { 
+                console.log("tahmine ettiğim üzere burda durdurmam lazım")
+            }       
+            if ( lastView) { 
+                document.getElementById(lastView).innerHTML = "";
+            }
+            if ( las) { 
+                document.getElementById(las).innerHTML = "";
+            }
+            setCookie("lastView", "", 1);
+        }
 
         document.addEventListener('click', function(event) {
             if (event.target.classList.contains('habergt')) {
-                let apiUrl = event.target.getAttribute('data-info');  
-                console.log(apiUrl)
-                // /post sayfasına GET isteği gönder
+                let apiUrl = event.target.getAttribute('data-info'); 
+                clearCookie("hbr_"+apiUrl);
+                setCookie("lastView", "hbr_"+apiUrl, 1);
                 fetch(`/haber?url=${encodeURIComponent(apiUrl)}`)
                     .then(response => response.json())
-                    .then(data => {
+                    .then(data => {                        
                     
-                        //body= JSON.stringify(data)
-                        //console.log(data.title)
-                        document.getElementById(apiUrl).innerHTML = "<hr>"+data.text;
+                        document.getElementById("hbr_"+apiUrl).innerHTML = "<hr>"+data.text;
                         
                     })
                     .catch(error => console.error('GET Hata:', error));
@@ -227,7 +241,7 @@
 
         document.getElementById("blok").style.display = "none";
         function getData(site) {
-
+            clearCookie();
             const lastButton = getCookie("lastButton");
             if (lastButton) {
                 document.getElementById("hide_"+lastButton).style.display = "";
@@ -255,7 +269,7 @@
                     var i, listeUzunluk = data.length;
                     var lis =[]
                     for(i = 0; i < listeUzunluk; i++) {
-                        lis=lis+'<li><span data-info="'+data[i]["news_link"]+'" class="habergt">'+data[i]["news_title"]+'</span><a href="/oku?url='+data[i]['news_link']+'" target="_blank" class="btncon" title="oxu" aria-label="oxu" style="padding: 0.4rem;"><svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg></a><div class="haberdivi" id="'+data[i]["news_link"]+'"></div></li>'
+                        lis=lis+'<li><span data-info="'+data[i]["news_link"]+'" class="habergt">'+data[i]["news_title"]+'</span><a href="/oku?url='+data[i]['news_link']+'" target="_blank" class="btncon" title="oxu" aria-label="oxu" style="padding: 0.4rem;"><svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg></a><div class="haberdivi" id="hbr_'+data[i]["news_link"]+'"></div></li>'
                     }
                     //document.getElementById(veri).innerHTML = JSON.stringify(lis);
                     document.getElementById(veri).innerHTML = lis;
@@ -266,7 +280,6 @@
         }
         function cls(veri){
             const lastButton = getCookie("lastButton");
-
             if (lastButton === veri) {
                 document.getElementById("hide_"+lastButton).style.display = "";
             } 
