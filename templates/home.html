@@ -5,7 +5,7 @@
         a.button {border-radius: 50%;width: 25px;height: 25px;font-size: 12px;display: inline-block;text-align: center;box-sizing: border-box;background-color: buttonface;padding: 6px;box-shadow: 0px 1px 2px rgba(0, 0, 0);}
         a{ text-decoration: none;}
         ol{display: table;}
-        ol li { color: #4F4F4F; max-width: 500px;padding: 5px;margin: 5px auto;border: 1px solid #eee;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.06);}
+        ol li { color: #4F4F4F; max-width: 500px;margin: 5px auto;border: 1px solid #eee;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.06);}
         
         :root {
             --surface1: hsl(0 0% 90%);
@@ -16,12 +16,12 @@
             block-size: 100%;
             inline-size: 100%;
         }        
-        body {
+        body {/*
             min-block-size: 100%;
             min-inline-size: 100%;
+            padding: 1rem;*/
             box-sizing: border-box;
             margin: 0;
-            padding: 1rem;
         
             display: grid;
             place-content: center;
@@ -134,6 +134,33 @@
         }
         .haberdivi img,.haberdivi iframe,.haberdivi{max-width: 100% !important;}
         .haberdivi{line-height: 22px;font-size: 17px;}
+        .habergt{padding: 5px;}
+        .habergt .btncon{float: right;margin-top: -4px;padding: 0.3rem 0.3rem 0.1rem;}
+        ol {
+            counter-reset: li-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+        ol li {
+            counter-increment: li-counter;
+            position: relative;
+            padding-left: 10px;
+        }
+        ol li::before {
+            content: counter(li-counter) ".";
+            position: absolute;
+            
+            color: #3498db; /* Mavi renkte numaralar */
+            font-size: 0.6rem; /* Font büyüklüğü */
+            left: -5px;
+            top: -3px;
+            font-weight: bold;
+            border: 1px solid #ccc;
+            font-size: 0.6rem;
+            padding: 0px 0 0 2px;
+            border-radius: 6px;
+            background: aqua;
+        }
     </style>
 
     <section class="overflow-x scrollbar">
@@ -175,12 +202,31 @@
     <section class="cardbox" style="max-width: 500px;min-width: 200px;min-height: 300px;margin: 10px auto;padding: 1rem;" id="blok">
         <div id="site" style="margin-left: 6%;font-size: 3ch;margin: 1ch 1ch;"></div>
         <hr style="width: 20%;margin: 0px 30px;border: 1px solid #0B5AA2;">
-        <ol id="veri_" style="padding: 3px;float: left;margin-left: 30px;"></ol>
+        <ol id="veri_"></ol>
     </section>
     <a href="/logout" title="çıxış" class="btncon logoutbtn"><svg width="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">  <path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12h-9.5m7.5 3l3-3-3-3m-5-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h5a2 2 0 002-2v-1"/></svg></a>
     
 
     <script>
+
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('target')) {
+        const rect = event.target.getBoundingClientRect();
+        const fixedElement = document.createElement('div');
+        
+        fixedElement.style.position = 'fixed';
+        fixedElement.style.left = `${rect.left}px`;
+        fixedElement.style.top = `${rect.top}px`;
+        fixedElement.style.width = `${rect.width}px`;
+        fixedElement.style.height = `${rect.height}px`;
+        fixedElement.style.backgroundColor = 'rgba(255, 0, 0, 0.5)'; // Yarı şeffaf kırmızı renk
+        fixedElement.style.zIndex = 1000; // Üstte kalmasını sağlar
+        
+        document.body.appendChild(fixedElement);
+    }
+});
+
+
         function setCookie(name, value, days) {
             const date = new Date();
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -198,18 +244,22 @@
             }
             return "";
         }
-
-
-        
         
         setCookie("lastView", "", 1);
         setCookie("lastButton", "", 1);
-
+        function goToId(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                console.error('Element not found');
+            }
+        }
         function clearCookie(las=""){
             const lastView = getCookie("lastView");            
             if ( lastView == las) { 
                 console.log("tahmine ettiğim üzere burda durdurmam lazım")
-            }       
+            }
             if ( lastView) { 
                 document.getElementById(lastView).innerHTML = "";
             }
@@ -227,7 +277,7 @@
                 fetch(`/haber?url=${encodeURIComponent(apiUrl)}`)
                     .then(response => response.json())
                     .then(data => {                        
-                    
+                        goToId("hbr_"+apiUrl)
                         document.getElementById("hbr_"+apiUrl).innerHTML = "<hr>"+data.text;
                         
                     })
@@ -269,7 +319,7 @@
                     var i, listeUzunluk = data.length;
                     var lis =[]
                     for(i = 0; i < listeUzunluk; i++) {
-                        lis=lis+'<li><span data-info="'+data[i]["news_link"]+'" class="habergt">'+data[i]["news_title"]+'</span><a href="/oku?url='+data[i]['news_link']+'" target="_blank" class="btncon" title="oxu" aria-label="oxu" style="padding: 0.4rem;"><svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg></a><div class="haberdivi" id="hbr_'+data[i]["news_link"]+'"></div></li>'
+                        lis=lis+'<li><div><div data-info="'+data[i]["news_link"]+'" class="habergt">'+data[i]["news_title"]+'<a href="'+data[i]['news_link']+'" target="_blank" class="btncon" title="oxu" aria-label="oxu"><svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg></a></div></div><div class="haberdivi" id="hbr_'+data[i]["news_link"]+'"></div></li>'
                     }
                     //document.getElementById(veri).innerHTML = JSON.stringify(lis);
                     document.getElementById(veri).innerHTML = lis;
@@ -280,6 +330,7 @@
         }
         function cls(veri){
             const lastButton = getCookie("lastButton");
+            setCookie("lastView", "", 1);
             if (lastButton === veri) {
                 document.getElementById("hide_"+lastButton).style.display = "";
             } 
