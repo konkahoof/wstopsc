@@ -113,14 +113,12 @@ def temizle_html(data,blok):
         blok
     return data
 
-@app.route('/oku/<path:post>', methods=['GET'])
-def oku(post):
-    data = json.loads(haberscraper(post))
-    return render_template('oku.html', site="",haberler="", data=data)
 
-
-@app.route('/haber/<path:post>', methods=['GET'])
-def haberscraper(post):
+@app.route('/haber', methods=['GET'])
+def haberscraper():
+    if 'url' in request.args and request.args.get('url') is not None:
+        post = request.args.get('url')
+        print(f"Requested URL: {post}")
     print(f"Requested URL: {post}")
     print(simplify_url(post) )
     with open(jsonfile) as file:
