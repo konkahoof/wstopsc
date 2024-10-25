@@ -139,7 +139,7 @@ def haberscraper():
                 news["text"]=str(haber.select_one(item['posttext'])).replace("\n","")
             except:
                 news["title"]="Halhazırda bu kontent mövcud deyil"
-                news["text"]=str("Sayta Keçid: <a href='"+post+"'>"+post+"</a>")
+                news["text"]=str("bu kontent mövcud deyil <a href='"+post+"' class='btncon' target='_blank'>Sayta Keçid</a> edib oxuyabilersiniz")
                 return  json.dumps(news, indent=4, ensure_ascii=False)
 
     return json.dumps(news, indent=4, ensure_ascii=False)
