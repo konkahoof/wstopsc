@@ -132,6 +132,7 @@
             --tw-border-spacing-y: 0;
             display: inline-block;
         }
+        .haberdivi img,.haberdivi iframe,.haberdivi{max-width: 100% !important;}
     </style>
 
     <section class="overflow-x scrollbar">
@@ -197,33 +198,28 @@
             return "";
         }
 
-        function getPost(post) {
-            console.log(post);
-            var xhr = new XMLHttpRequest();
-            var url = "/haber/"+post+"";
-            var veri= "text";
-            xhr.onreadystatechange = function() {   
-                if (this.readyState == 4 && this.status == 500) {
-                    console.log(this.status)                
-                    document.getElementById(veri).innerHTML = "<p>xeta baş verdi (500)</p>";
-                }
-                if (this.readyState == 4 && this.status == 200) {
-                    console.log(this.status)  
-                    var data = JSON.parse(this.responseText);
-                    console.log(data)
-                    lis='<p>'+data['text']+'</p>'
+
+
+
+
+
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('habergt')) {
+                let apiUrl = event.target.getAttribute('data-info');  
+                console.log(apiUrl)
+                // /post sayfasına GET isteği gönder
+                fetch(`/haber?url=${encodeURIComponent(apiUrl)}`)
+                    .then(response => response.json())
+                    .then(data => {
                     
-                    //document.getElementById(veri).innerHTML = JSON.stringify(lis);
-                    document.getElementById(veri).innerHTML = lis;
-                }
-            };        
-            xhr.open("GET", url);
-            xhr.send();
-        }
-
-
-
-
+                        //body= JSON.stringify(data)
+                        //console.log(data.title)
+                        document.getElementById(apiUrl).innerHTML = "<hr>"+data.text;
+                        
+                    })
+                    .catch(error => console.error('GET Hata:', error));
+            }
+        });
 
 
 
@@ -259,7 +255,7 @@
                     var i, listeUzunluk = data.length;
                     var lis =[]
                     for(i = 0; i < listeUzunluk; i++) {
-                        lis=lis+'<li><a href="'+data[i]["news_link"]+'" data-info="'+data[i]["news_link"]+'" role="button">'+data[i]["news_title"]+'</a><a href="/oku/'+data[i]['news_link']+'" target="_blank" class="btncon" title="oxu" aria-label="oxu" style="padding: 0.4rem;"><svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg></a></li>'
+                        lis=lis+'<li><span data-info="'+data[i]["news_link"]+'" class="habergt">'+data[i]["news_title"]+'</span><a href="/oku?url='+data[i]['news_link']+'" target="_blank" class="btncon" title="oxu" aria-label="oxu" style="padding: 0.4rem;"><svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg></a><div class="haberdivi" id="'+data[i]["news_link"]+'"></div></li>'
                     }
                     //document.getElementById(veri).innerHTML = JSON.stringify(lis);
                     document.getElementById(veri).innerHTML = lis;
