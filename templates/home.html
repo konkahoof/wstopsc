@@ -123,17 +123,18 @@
             background-color: rgb(219 234 254 / 0.6);
             --tw-text-opacity: 1;
             color: rgb(59 130 246 / var(--tw-text-opacity));
-            padding: 0.625rem;
+            padding: 0.65rem;
             box-sizing: border-box;
             border-radius: 0.5rem;
-            border: 1 solid #e5e7eb;
+            border: 1px solid #e5e7eb;
             box-shadow: 1px 1px 1px;
             --tw-border-spacing-x: 0;
             --tw-border-spacing-y: 0;
             display: inline-block;
         }
         .haberdivi img,.haberdivi iframe,.haberdivi{max-width: 100% !important;}
-        .haberdivi{line-height: 22px;font-size: 17px;}
+        .haberdivi{line-height: 22px;font-size: 17px;background: #ebf2fa;}
+        .haberdivi hr{margin: 0;border: 1px solid #c72b2b;}
         .habergt{padding: 5px;}
         .habergt .btncon{float: right;margin-top: -4px;padding: 0.3rem 0.3rem 0.1rem;}
         ol {
@@ -142,15 +143,18 @@
             padding-left: 0;
         }
         ol li {
+            width: 100%;
+            display: inline-grid;
             counter-increment: li-counter;
             position: relative;
-            padding-left: 10px;
         }
         ol li::before {
             content: counter(li-counter) ".";
             position: absolute;
             
-            color: #3498db; /* Mavi renkte numaralar */
+            background-color: rgb(219 234 254 / 0.6);
+            --tw-text-opacity: 1;
+            color: rgb(59 130 246 / var(--tw-text-opacity));
             font-size: 0.6rem; /* Font büyüklüğü */
             left: -5px;
             top: -3px;
@@ -159,7 +163,6 @@
             font-size: 0.6rem;
             padding: 0px 0 0 2px;
             border-radius: 6px;
-            background: aqua;
         }
     </style>
 
@@ -208,24 +211,6 @@
     
 
     <script>
-
-document.addEventListener('click', function(event) {
-    if (event.target.classList.contains('target')) {
-        const rect = event.target.getBoundingClientRect();
-        const fixedElement = document.createElement('div');
-        
-        fixedElement.style.position = 'fixed';
-        fixedElement.style.left = `${rect.left}px`;
-        fixedElement.style.top = `${rect.top}px`;
-        fixedElement.style.width = `${rect.width}px`;
-        fixedElement.style.height = `${rect.height}px`;
-        fixedElement.style.backgroundColor = 'rgba(255, 0, 0, 0.5)'; // Yarı şeffaf kırmızı renk
-        fixedElement.style.zIndex = 1000; // Üstte kalmasını sağlar
-        
-        document.body.appendChild(fixedElement);
-    }
-});
-
 
         function setCookie(name, value, days) {
             const date = new Date();
@@ -276,8 +261,9 @@ document.addEventListener('click', function(event) {
                 setCookie("lastView", "hbr_"+apiUrl, 1);
                 fetch(`/haber?url=${encodeURIComponent(apiUrl)}`)
                     .then(response => response.json())
-                    .then(data => {                        
-                        goToId("hbr_"+apiUrl)
+                    .then(data => {           
+                        console.log("hbrt_"+apiUrl)             
+                        goToId("hbrt_"+apiUrl)
                         document.getElementById("hbr_"+apiUrl).innerHTML = "<hr>"+data.text;
                         
                     })
@@ -319,7 +305,7 @@ document.addEventListener('click', function(event) {
                     var i, listeUzunluk = data.length;
                     var lis =[]
                     for(i = 0; i < listeUzunluk; i++) {
-                        lis=lis+'<li><div><div data-info="'+data[i]["news_link"]+'" class="habergt">'+data[i]["news_title"]+'<a href="'+data[i]['news_link']+'" target="_blank" class="btncon" title="oxu" aria-label="oxu"><svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg></a></div></div><div class="haberdivi" id="hbr_'+data[i]["news_link"]+'"></div></li>'
+                        lis=lis+'<li id="hbrt_'+data[i]["news_link"]+'"><div><div data-info="'+data[i]["news_link"]+'" class="habergt">'+data[i]["news_title"]+'<a href="'+data[i]['news_link']+'" target="_blank" class="btncon" title="oxu" aria-label="oxu"><svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg></a></div></div><div class="haberdivi" id="hbr_'+data[i]["news_link"]+'"></div></li>'
                     }
                     //document.getElementById(veri).innerHTML = JSON.stringify(lis);
                     document.getElementById(veri).innerHTML = lis;
