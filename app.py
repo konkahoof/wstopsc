@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, url_for, make_response,render_template
 from urllib.parse import urlparse
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 from bs4.element import Tag
 import functools
 import hashlib
@@ -88,19 +88,72 @@ def scraper():
 def dosyaya_yaz(dosya_adi, veri):
     with open(dosya_adi, 'w') as dosya:
         dosya.write(veri)
-        
 def simplify_url(url):
     parsed_url = urlparse(url)
     simplified_url = f"{parsed_url.scheme}://{parsed_url.netloc}/"
     return simplified_url.replace("www.","")
+def souptanCumleTagiSil(soup,tag_sentence):
+    # Belirtilen cümleyi içeren etiketleri kaldırmak
+    for element in soup.find_all(text=lambda text: tag_sentence in text):
+        parent = element.parent
+        if parent:
+            parent.extract()
+def souptanCumleSil(soup,target_sentence):
+    # Belirtilen cümleyi içeren etiketleri bulmak ve cümleyi kaldırmak
+    for element in soup.find_all(text=lambda text: target_sentence in text):
+        if target_sentence in element:
+            new_text = element.replace(target_sentence, '')
+            element.replace_with(new_text)
 def clearscr(soup):
     # `style` ve `script` etiketlerini kaldır
-    for tag in soup(["style", "script"]):
+    for tag in soup(["style", "script","meta","link"]):
         tag.decompose()
     # Tüm etiketlerdeki `style` özniteliklerini kaldır
     for tag in soup.find_all(True):
         if tag.has_attr("style"):
             del tag["style"]
+    if soup.find_all('iframe') :
+        for iframe in soup.find_all('iframe'):
+            if '/extra/' in iframe.get('src', ''):
+                iframe.decompose()
+    if soup.find_all('p') :#sia.az
+        for p in soup.find_all('p'):
+            if 'Bütün xəbərlər Facebook səhifəmizdə' in p.text:
+                p.decompose()
+ 
+    if soup.find_all('a') :
+        for iframe in soup.find_all('a'):
+            if '//www.facebook.com/profile.php?id=' in iframe.get('href', ''):
+                iframe.decompose()
+    if soup.find_all('a') :
+        for iframe in soup.find_all('a'):
+            if '//wa.me' in iframe.get('href', ''):
+                iframe.decompose()
+    if soup.find_all('a') :
+        for iframe in soup.find_all('a'):
+            if '//api.whatsapp' in iframe.get('href', ''):
+                iframe.decompose()
+    if soup.find_all('a') :
+        for iframe in soup.find_all('a'):
+            if '//t.me' in iframe.get('href', ''):
+                iframe.decompose()        
+    for element in soup(text=lambda text: isinstance(text, Comment)):
+        element.extract()  
+    souptanCumleTagiSil(soup,"Şikayətiniz varsa Whatsapp:")#big.az
+    souptanCumleTagiSil(soup,"Bütün xəbərlər Facebook səhifəmizdə")#sia.az
+    souptanCumleTagiSil(soup,"Teqlər:")#ordu.az
+    souptanCumleTagiSil(soup,"© Materiallardan istifadə edərkən hiperlinklə istinad olunmalıdır")#ordu.az
+    souptanCumleTagiSil(soup,"Тэги:")#armiya.az
+    souptanCumleSil(soup,"Следите за актуальными военными новостями в нашем Telegram-канале")
+    souptanCumleSil(soup,"Следите за актуальными военными новостями в нашем")
+    """      
+    for p in soup.find_all('p'):
+        if not p.get_text(strip=True):
+            p.extract()
+    for div in soup.find_all('div'):
+        if not div.get_text(strip=True):
+            div.extract()
+    """
     return soup
 
 def temizle_html(data,blok):
@@ -118,7 +171,6 @@ def temizle_html(data,blok):
 def haberscraper():
     if 'url' in request.args and request.args.get('url') is not None:
         post = request.args.get('url')
-        print(f"Requested URL: {post}")
     print(f"Requested URL: {post}")
     print(simplify_url(post) )
     with open(jsonfile) as file:
@@ -127,21 +179,35 @@ def haberscraper():
         if item['site'] == simplify_url(post) :
             news={}
             r = requests.get(post,headers=headersf)
-            soup = BeautifulSoup(r.content, 'html.parser')
-            soup = clearscr(soup)
+            soup = BeautifulSoup(r.content, 'html.parser', from_encoding='utf-8')
+            if item['site'] != "https://olke.az/" and item['site'] != "https://xural.com/" :
+                print(item['site'])
+                soup = clearscr(soup)
             try:
                 soup = temizle_html(soup,item['adblk'])
             except:
                 soup
             try:
                 haber = soup.select_one(item['postblok'])
-                news["title"]=haber.select_one(item['posttitle']).text
+                title=haber.select_one(item['posttitle'])
+                news["title"]=title.text
+
+                title = haber.select_one(item['posttitle'])
+
+                if title:
+                    if title.text in haber.text:
+                        title.decompose()
+
                 news["text"]=str(haber.select_one(item['posttext'])).replace("\n","")
             except:
                 news["title"]="Halhazırda bu kontent mövcud deyil"
                 news["text"]=str("bu kontent mövcud deyil <a href='"+post+"' class='btncon' target='_blank'>Sayta Keçid</a> edib oxuyabilersiniz")
-                return  json.dumps(news, indent=4, ensure_ascii=False)
+    if  simplify_url(post) == "https://medicina.az/":
+        news={}
+        news["title"]="medicina.az linki"
+        news["text"]=str("bu kontent mövcud deyil <a href='"+post+"' class='btncon' target='_blank'>Sayta Keçid</a> edib oxuyabilersiniz")
 
+    print(news)
     return json.dumps(news, indent=4, ensure_ascii=False)
 
 
