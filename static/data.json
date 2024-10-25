@@ -121,7 +121,9 @@
             "div.share",
             "div.comments",
             "div.popular_zengimcell",
-            "div.ss-buttons"
+            "div.ss-buttons",
+            "div.eye",
+            "span.date"
         ]
     },
     {
@@ -315,7 +317,8 @@
         "adblk":[
             "div.AdviadNativeVideo",
             "a.buttonsoc_klas",
-            "div.datespan"
+            "div.datespan",
+            "span.fbbigshare"
         ]
     },
     {
@@ -412,9 +415,12 @@
         "item": "div.category-post-item",
         "title": "h2",
         "postblok":"div.full-post-content",
-        "posttitle":"h1",
+        "posttitle":"h1.full-post-title",
         "posttext":"div.full-post-article",
-        "adblk":[ ]
+        "adblk":[
+            "ins.ainsyndication",
+            "script"
+        ]
     },
     {
         "site": "https://yenilik.az/",
@@ -481,7 +487,7 @@
         "urls": "",
         "mainblok": "ul.daily",
         "item": "li",
-        "title": "a",
+        "title": "p",
         "postblok":"div.col-lg-8",
         "posttitle":"h1",
         "posttext":"div.news-text"
@@ -590,7 +596,10 @@
         "postblok":"div.right_blc",
         "posttitle":"h2",
         "posttext":"div.news_txt",
-        "adblk":["ins.adsgarden"]
+        "adblk":[
+            "ins.adsgarden",
+            "div.oxunmasayi"
+        ]
     },
     {
         "site": "https://avropa.info/",
