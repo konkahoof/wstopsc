@@ -132,9 +132,11 @@
             --tw-border-spacing-y: 0;
             display: inline-block;
         }
-        .haberdivi img,.haberdivi iframe,.haberdivi{max-width: 100% !important;}
+        .haberdivi img{display: none;}
+        .haberdivi img,.haberdivi iframe,.haberdivi{  height: auto; max-width: 100% !important;}
         .haberdivi{line-height: 22px;font-size: 17px;background: #ebf2fa;}
         .haberdivi hr{margin: 0;border: 1px solid #c72b2b;}
+        .haberdivi div{margin:.9em 0;}
         .habergt{padding: 5px;}
         .habergt .btncon{float: right;margin-top: -4px;padding: 0.3rem 0.3rem 0.1rem;}
         ol {
@@ -207,11 +209,72 @@
         <hr style="width: 20%;margin: 0px 30px;border: 1px solid #0B5AA2;">
         <ol id="veri_"></ol>
     </section>
-    <a href="/logout" title="çıxış" class="btncon logoutbtn"><svg width="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">  <path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12h-9.5m7.5 3l3-3-3-3m-5-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h5a2 2 0 002-2v-1"/></svg></a>
-    
+    <div class="logoutbtn">
+        
+        <label>
+            <input type="checkbox" id="toggleCheckbox">
+            Resimleri Göster/Gizle
+        </label>
+        <a href="/logout" title="çıxış" class="btncon"><svg width="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">  <path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12h-9.5m7.5 3l3-3-3-3m-5-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h5a2 2 0 002-2v-1"/></svg></a>
+    </div>    
 
     <script>
 
+        // Daha önce tıklanmış div elemanlarını yerel depolamada saklamak için fonksiyon
+        function markDivAsVisited(id) {
+            let visitedIds = JSON.parse(localStorage.getItem('visitedIds')) || [];
+            if (!visitedIds.includes(id)) {
+                visitedIds.push(id);
+                localStorage.setItem('visitedIds', JSON.stringify(visitedIds));
+            }
+        }
+        // Sayfa yüklenirken daha önce tıklanmış div'lerin stilini değiştirme
+        function loadVisited()  {
+            let visitedIds = JSON.parse(localStorage.getItem('visitedIds')) || [];
+            visitedIds.forEach(id => {
+                let div = document.querySelector(`div[data-id="${id}"]`);
+                if (div) {
+                    div.style.backgroundColor = 'yellow'; // Örneğin sarı arka plan rengi
+                }
+            });
+        }
+        // Div tıklama olayını yakalayıp işleyecek fonksiyon
+        document.addEventListener('click', (event) => {
+            if (event.target.matches('div[data-id]')) {
+                markDivAsVisited(event.target.getAttribute('data-id'));
+                console.log( event.target)
+                event.target.style.backgroundColor = 'yellow'; // Tıklanan div'in arka plan rengini değiştir
+            }
+        });
+
+
+        
+        document.getElementById('toggleCheckbox').addEventListener('change', function() {
+            const images = document.querySelectorAll('.haberdivi img');
+            images.forEach(image => {
+                image.style.display = this.checked ? 'block' : 'none';
+            });
+        });
+        function encryptURL(url) {
+            const salt = 'asdfghjklqwertyuopzxcvbnm';
+            const combined = (url.substring(15) + salt).substring(0, 50);
+            //console.log(combined)
+            //console.log(combined.length)
+            // Basit bir hash fonksiyonu (bu örnek için)
+            let hash = 0;
+            for (let i = 0; i < combined.length; i++) {
+                const char = combined.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash |= 0; // 32-bit tamsayıya indirgenir
+            }
+            let hashedString = Math.abs(hash).toString();
+            // 100 karaktere uzatmak için, gerekirse tekrar tekrar ekleriz
+            while (hashedString.length < 50) {
+                hashedString += hashedString;
+            }
+
+            return hashedString.substring(0, 50);
+        }
         function setCookie(name, value, days) {
             const date = new Date();
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -241,39 +304,30 @@
             }
         }
         function clearCookie(las=""){
-            const lastView = getCookie("lastView");            
-            if ( lastView == las) { 
-                console.log("tahmine ettiğim üzere burda durdurmam lazım")
-            }
-            if ( lastView) { 
+            const lastView = getCookie("lastView");
+            if(lastView) { 
                 document.getElementById(lastView).innerHTML = "";
             }
-            if ( las) { 
+            if (las) { 
+                console.log(las)
                 document.getElementById(las).innerHTML = "";
             }
             setCookie("lastView", "", 1);
         }
-
         document.addEventListener('click', function(event) {
             if (event.target.classList.contains('habergt')) {
                 let apiUrl = event.target.getAttribute('data-info'); 
-                clearCookie("hbr_"+apiUrl);
-                setCookie("lastView", "hbr_"+apiUrl, 1);
+                clearCookie("hbr_"+encryptURL(apiUrl));
+                setCookie("lastView", "hbr_"+encryptURL(apiUrl), 1);
                 fetch(`/haber?url=${encodeURIComponent(apiUrl)}`)
                     .then(response => response.json())
-                    .then(data => {           
-                        console.log("hbrt_"+apiUrl)             
-                        goToId("hbrt_"+apiUrl)
-                        document.getElementById("hbr_"+apiUrl).innerHTML = "<hr>"+data.text;
-                        
+                    .then(data => {         
+                        goToId("hbrt_"+encryptURL(apiUrl))
+                        document.getElementById("hbr_"+encryptURL(apiUrl)).innerHTML = "<hr>"+data.text;
                     })
                     .catch(error => console.error('GET Hata:', error));
             }
         });
-
-
-
-
 
         document.getElementById("blok").style.display = "none";
         function getData(site) {
@@ -283,7 +337,6 @@
                 document.getElementById("hide_"+lastButton).style.display = "";
                 document.getElementById("close_"+lastButton).style.display = "none";
             } 
-
             document.getElementById("close_"+site).style.display = "";
             setCookie("lastButton", site, 1);
             document.getElementById("hide_"+site).style.display = "none";
@@ -305,10 +358,11 @@
                     var i, listeUzunluk = data.length;
                     var lis =[]
                     for(i = 0; i < listeUzunluk; i++) {
-                        lis=lis+'<li id="hbrt_'+data[i]["news_link"]+'"><div><div data-info="'+data[i]["news_link"]+'" class="habergt">'+data[i]["news_title"]+'<a href="'+data[i]['news_link']+'" target="_blank" class="btncon" title="oxu" aria-label="oxu"><svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg></a></div></div><div class="haberdivi" id="hbr_'+data[i]["news_link"]+'"></div></li>'
+                        lis=lis+'<li id="hbrt_'+encryptURL(data[i]["news_link"])+'"><div ><div data-id="did_'+encryptURL(data[i]["news_link"])+'" data-info="'+data[i]["news_link"]+'" class="habergt">'+data[i]["news_title"]+'<a href="'+data[i]['news_link']+'" target="_blank" class="btncon" title="oxu" aria-label="oxu"><svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg></a></div></div><div class="haberdivi" id="hbr_'+encryptURL(data[i]["news_link"])+'"></div></li>'
                     }
                     //document.getElementById(veri).innerHTML = JSON.stringify(lis);
                     document.getElementById(veri).innerHTML = lis;
+                    loadVisited()
                 }
             };        
             xhr.open("GET", url);
