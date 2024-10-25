@@ -251,9 +251,17 @@
         "mainblok": "div.searchwidget",
         "item": "div.large-widget",
         "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.single-post",
+        "posttitle":"h1",
+        "posttext":"div.large-widget",
+        "adblk":[
+            "div.large-post-meta",
+            "div.post-sharing",
+            "div.colorfulcats",
+            "div.whatsapp-channel-wrapper",
+            "div.tags-list",
+            "div.related-posts"
+        ]
     },
     {
         "site": "https://mia.az/",
@@ -261,9 +269,9 @@
         "mainblok": "div.category",
         "item": "div.category-news-item",
         "title": "a",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.single-news",
+        "posttitle":"h2",
+        "posttext":"div.single-news-description"
     },
     {
         "site": "https://axar.az/",
@@ -271,9 +279,9 @@
         "mainblok": "div.content",
         "item": "article",
         "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.newsPlace",
+        "posttitle":"h1",
+        "posttext":"span.article_body"
     },
     {
         "site": "https://baku.ws/",
@@ -281,9 +289,9 @@
         "mainblok": "div.page-block",
         "item": "div.post-item",
         "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.post-detail",
+        "posttitle":"h1",
+        "posttext":"div.post-detail-content"
     },
     {
         "site": "https://qaynarinfo.az/",
@@ -291,9 +299,9 @@
         "mainblok": "div.wrap_hdn",
         "item": "div.news_items",
         "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.wrap_center",
+        "posttitle":"h1",
+        "posttext":"div.nw_in_text"
     },
     {
         "site": "https://sonxeber.az/",
@@ -301,9 +309,14 @@
         "mainblok": "div.newslister",
         "item": "div.nart",
         "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.centerblok",
+        "posttitle":"h1",
+        "posttext":"article",
+        "adblk":[
+            "div.AdviadNativeVideo",
+            "a.buttonsoc_klas",
+            "div.datespan"
+        ]
     },
     {
         "site": "https://big.az/",
@@ -311,9 +324,15 @@
         "mainblok": "div.newslister",
         "item": "div.postart",
         "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div#bcentrebloks",
+        "posttitle":"h1",
+        "posttext":"article",
+        "adblk":[
+            "div.AdviadNativeVideo",
+            "a.buttonsoc_klas",
+            "div.datespan",
+            "span.fbbigshare"
+        ]
     },
     {
         "site": "https://afn.az/",
@@ -321,9 +340,15 @@
         "mainblok": "div.composs-main-content",
         "item": "table",
         "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.theiaStickySidebar",
+        "posttitle":"h1",
+        "posttext":"div.composs-main-article-content",
+        "adblk":[
+            "div.composs-main-article-head",
+            "div.redaksiyasecim",
+            "div.uSocial-Share",
+            "div.reklam22"
+        ]
     },
     {
         "site": "https://baymedia.az/",
@@ -331,9 +356,14 @@
         "mainblok": "div.popular-related",
         "item": "li",
         "title": "h4",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.single-blog-page-area",
+        "posttitle":"h3",
+        "posttext":"div.col-lg-8",
+        "adblk":[
+            "div.header-page-locator",
+            "div.share-section",
+            "div.like-section"
+        ]
     },
     {
         "site": "https://veteninfo.az/",
@@ -341,9 +371,9 @@
         "mainblok": "div.list-load",
         "item": "article",
         "title": "div.article-title",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.content-item-inner",
+        "posttitle":"h1",
+        "posttext":"div.content-entry"
     },
     {
         "site": "https://xeberler.az/",
@@ -351,9 +381,9 @@
         "mainblok": "div.col-md-11",
         "item": "div.sec-topic",
         "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.sec-info",
+        "posttitle":"h3",
+        "posttext":"div.news-details-all"
     },
     {
         "site": "https://avrasiya.net/",
@@ -361,9 +391,9 @@
         "mainblok": "div.feed-left",
         "item": "div.news-block",
         "title": "a.title",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.selected-post",
+        "posttitle":"h1",
+        "posttext":"div.editor-body"
     },
     {
         "site": "https://azxeber.com/",
@@ -371,9 +401,9 @@
         "mainblok": "div.posts-wrap",
         "item": "div.post-item",
         "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.full-post-a",
+        "posttitle":"h2",
+        "posttext":"div.full-post-article"
     },
     {
         "site": "https://olke.az/",
@@ -381,9 +411,10 @@
         "mainblok": "div.category-posts",
         "item": "div.category-post-item",
         "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.full-post-content",
+        "posttitle":"h1",
+        "posttext":"div.full-post-article",
+        "adblk":[ ]
     },
     {
         "site": "https://yenilik.az/",
@@ -391,9 +422,9 @@
         "mainblok": "div.siteSag1",
         "item": "div.sagSablon1",
         "title": "strong",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.detayBaslik",
+        "posttitle":"h1",
+        "posttext":"div.haberDetayIcerik"
     },
     {
         "site": "https://interpress.az/",
@@ -401,9 +432,9 @@
         "mainblok": "div.w_widget_lent",
         "item": "a",
         "title": "span.title",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.single-content",
+        "posttitle":"h1",
+        "posttext":"div.entry-content"
     },
     {
         "site": "https://qaziler.az/",
@@ -411,9 +442,9 @@
         "mainblok": "div.news-lent",
         "item": "article",
         "title": "div.title",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"article.news-full",
+        "posttitle":"h1",
+        "posttext":"div.post-entry"
     },
     {
         "site": "https://sherg.az/",
@@ -421,9 +452,9 @@
         "mainblok": "div.sidebar-right",
         "item": "article",
         "title": "h5",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.col-lg-8",
+        "posttitle":"h1",
+        "posttext":"div.entry-main-content"
     },
     {
         "site": "https://teleqraf.com/",
@@ -431,9 +462,9 @@
         "mainblok": "section",
         "item": "div.sec-topic",
         "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.news-wrapper",
+        "posttitle":"h1",
+        "posttext":"div.sec-info"
     },
     {
         "site": "https://yeniavaz.com/",
@@ -441,9 +472,9 @@
         "mainblok": "body",
         "item": "div.col-lg-4.col-md-6.customNews",
         "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div#divBlockLeft",
+        "posttitle":"h1",
+        "posttext":"div.post-content-area"
     },
     {
         "site": "https://ona.az/",
@@ -451,9 +482,9 @@
         "mainblok": "ul.daily",
         "item": "li",
         "title": "a",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.col-lg-8",
+        "posttitle":"h1",
+        "posttext":"div.news-text"
     },
     {
         "site": "https://xural.com/",
@@ -461,9 +492,13 @@
         "mainblok": "ul.posts-items",
         "item": "li",
         "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"article#the-post",
+        "posttitle":"h1",
+        "posttext":"div.entry-content",
+        "adblk":[
+            "p.published-date",
+            "div.stream-item"
+        ]
     },
     {
         "site": "https://bizim.media/",
@@ -471,9 +506,9 @@
         "mainblok": "div.a-block",
         "item": "a.ajax",
         "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.full-post-a",
+        "posttitle":"h1",
+        "posttext":"div.full-post-article"
     },
     {
         "site": "https://cebheinfo.az/",
@@ -481,9 +516,10 @@
         "mainblok": "div.card-row",
         "item": "article",
         "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.content-box",
+        "posttitle":"h1",
+        "posttext":"div.entry__article",
+        "adblk":[]
     },
     {
         "site": "https://globalinfo.az/",
@@ -491,9 +527,9 @@
         "mainblok": "div.newslist",
         "item": "div.newslistitem",
         "title": "a",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"article",
+        "posttitle":"h1",
+        "posttext":"div.entry-content"
     },
     {
         "site": "https://axsam.az/",
@@ -501,9 +537,9 @@
         "mainblok": "div.c-posts-wrap",
         "item": "div.c-post",
         "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.full-post-a",
+        "posttitle":"h2",
+        "posttext":"div.full-post-article"
     },
     {
         "site": "https://azertag.az/",
@@ -511,9 +547,9 @@
         "mainblok": "div.latest-news",
         "item": "div.latest-news-post",
         "title": "h2.entry-title",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.app-post",
+        "posttitle":"h2",
+        "posttext":"div.news-body"
     },
     {
         "site": "https://musavat.com/",
@@ -521,9 +557,9 @@
         "mainblok": "div.bg-white",
         "item": "div.col-md-3",
         "title": "strong",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.col-sm-9",
+        "posttitle":"h2",
+        "posttext":"div.text-content"
     },
     {
         "site": "https://7news.az/",
@@ -531,9 +567,9 @@
         "mainblok": "body",
         "item": "div.news-block-item",
         "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.full-post-a",
+        "posttitle":"h2",
+        "posttext":"div.full-post-article"
     },
     {
         "site": "https://medianews.az/",
@@ -541,9 +577,9 @@
         "mainblok": "div.jeg_posts",
         "item": "article.jeg_post",
         "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.jeg_inner_content",
+        "posttitle":"h1",
+        "posttext":"div.entry-content"
     },
     {
         "site": "https://aktual.az/",
@@ -551,9 +587,10 @@
         "mainblok": "div.lb_last_minute",
         "item": "li",
         "title": "article",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.right_blc",
+        "posttitle":"h2",
+        "posttext":"div.news_txt",
+        "adblk":["ins.adsgarden"]
     },
     {
         "site": "https://avropa.info/",
@@ -561,9 +598,9 @@
         "mainblok": "html",
         "item": "h3",
         "title": "a",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.jeg_inner_content",
+        "posttitle":"h1",
+        "posttext":"div.entry-content"
     },
     {
         "site": "https://armiya.az/",
@@ -571,9 +608,10 @@
         "mainblok": "div.news-lent",
         "item": "li",
         "title": "a",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.col-md-9",
+        "posttitle":"h3",
+        "posttext":"div.body",
+        "adblk":["div.addthis_inline_share_toolbox"]
     },
     {
         "site": "https://haqqin.az/",
@@ -581,9 +619,9 @@
         "mainblok": "main.news-list",
         "item": "a",
         "title": "div.news-item__heading",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"article.article",
+        "posttitle":"h1",
+        "posttext":"div.article-block"
     },
     {
         "site": "https://1news.az/",
@@ -591,9 +629,9 @@
         "mainblok": "div.newsListHolder",
         "item": "a",
         "title": "span.title",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"article.mainArticle",
+        "posttitle":"h1",
+        "posttext":"div.content"
     },
     {
         "site": "https://caliber.az/",
@@ -601,29 +639,29 @@
         "mainblok": "div.float_blocks",
         "item": "div.float_block",
         "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.post_view",
+        "posttitle":"h1",
+        "posttext":"div.post_body"
     },
     {
         "site": "https://minval.az/",
         "urls": "",
         "mainblok": "div.lenta-section",
-        "item": "article",
-        "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "item": "h3",
+        "title": "a",
+        "postblok":"div.my-post",
+        "posttitle":"h1",
+        "posttext":"div.content-inner"
     },
     {
-        "site": "http://bakuinform.az/",
+        "site": "https://bakuinform.az/",
         "urls": "",
         "mainblok": "div.swiper-wrapper",
         "item": "div.swiper-slide",
         "title": "a.index-hero-slider-item-title",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"section.layout-grid",
+        "posttitle":"h1.page-title",
+        "posttext":"div.news-page-body"
     },
     {
         "site": "https://aktor.az/",
@@ -631,9 +669,10 @@
         "mainblok": "div.cm-posts",
         "item": "article.type-post",
         "title": "h2",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"article.post",
+        "posttitle":"h1",
+        "posttext":"div.cm-entry-summary",
+        "adblk":["div.addtoany_share_save_container"]
     },
     {
         "site": "https://arazmedia.az/",
@@ -641,8 +680,8 @@
         "mainblok": "div.blog-posts-list",
         "item": "div.blog-post",
         "title": "h3",
-        "postblok":"",
-        "posttitle":"",
-        "posttext":""
+        "postblok":"div.blog-post-single",
+        "posttitle":"h1",
+        "posttext":"div.entry-content"
     }
 ]
