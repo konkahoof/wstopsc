@@ -33,9 +33,13 @@ def home():
     with open(jsonfile) as file:
         data = json.loads(file.read())
     sites = []
-    for site in data:  
-        sites.append(site["site"])
-    return render_template('home.html', sites=sites)
+    for site in data:
+        sit={
+            "site":site["site"],
+            "lang":site["lang"]
+        }
+        sites.append(sit)
+    return render_template('home.html', sites=data)
 
 #dia musavat yenicag  cf_clearance=8SFoZzwGXsViOZzXANRFQnIb_N4h328Id4TQGYUbuxs-1680443551-0-160;
 headersf = {
