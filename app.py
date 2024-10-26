@@ -33,7 +33,7 @@ def home():
     with open(jsonfile) as file:
         data = json.loads(file.read())
     sites = []
-    for site in data:    
+    for site in data:  
         sites.append(site["site"])
     return render_template('home.html', sites=sites)
 
@@ -56,7 +56,7 @@ def scraper():
                 r = requests.get(item['site']+ull,headers=headersf)
                 soup = BeautifulSoup(r.content, 'html.parser')
                 haberler_div = soup.select_one(item['mainblok'])
-                lim=19
+                lim=30
                 newss=[]
                 for i, haber_div in enumerate(haberler_div.select(item['item'])):
                     news={}
@@ -180,7 +180,7 @@ def haberscraper():
             news={}
             r = requests.get(post,headers=headersf)
             soup = BeautifulSoup(r.content, 'html.parser', from_encoding='utf-8')
-            if item['site'] != "https://olke.az/" and item['site'] != "https://xural.com/" :
+            if item['site'] != "https://olke.az/" and item['site'] != "https://xural.com/" and item['site'] != "https://qafqazinfo.az/" :
                 print(item['site'])
                 soup = clearscr(soup)
             try:
