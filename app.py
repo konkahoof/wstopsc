@@ -170,6 +170,13 @@ def temizle_html(data,blok):
         blok
     return data
 
+def duzenle_post_text(url, post_text):
+    if post_text is not None:
+        img_tags = post_text.select('img')
+        for img_tag in img_tags:
+            if img_tag and img_tag.get('src', '').startswith('/'):
+                img_tag['src'] = url + img_tag['src']
+    return str(post_text)
 
 @app.route('/haber', methods=['GET'])
 def haberscraper():
@@ -195,13 +202,13 @@ def haberscraper():
                 haber = soup.select_one(item['postblok'])
                 title=haber.select_one(item['posttitle'])
                 news["title"]=title.text
-
                 title = haber.select_one(item['posttitle'])
-
                 if title:
                     if title.text in haber.text:
                         title.decompose()
 
+                duzenle_post_text(item["site"], haber.select_one(item["posttext"]))
+                news["text"]=str(haber.select_one(item['posttext'])).replace("\n","")
                 news["text"]=str(haber.select_one(item['posttext'])).replace("\n","")
             except:
                 news["title"]="Halhazırda bu kontent mövcud deyil"
@@ -210,8 +217,6 @@ def haberscraper():
         news={}
         news["title"]="medicina.az linki"
         news["text"]=str("bu kontent mövcud deyil <a href='"+post+"' class='btncon' target='_blank'>Sayta Keçid</a> edib oxuyabilersiniz")
-
-    print(news)
     return json.dumps(news, indent=4, ensure_ascii=False)
 
 
