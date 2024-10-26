@@ -38,17 +38,18 @@
         border: 1px solid hsl(0 0% 80%);
         border-radius: 1ex;
         background-color: var(--surface2);
-        padding: 2rem;
+        padding: 1rem;
         box-shadow: 0 0 40px -10px rgba(0, 0, 0, .4);
     }        
     .horizontal-friends-list {
         display: grid;
         grid-auto-flow: column;
         grid-auto-columns: 10ch;
-        gap: 2rem;
+        gap: .1rem;
         width: 100%;
     
         & > figure {
+        transform: scale(.88);
         display: grid;
         gap: 1ex;
         margin: 0;
@@ -59,7 +60,7 @@
         transition: transform .2s ease-in-out;
     
         &:hover {
-            transform: scale(1.1);
+            transform: scale(.97);
         }
     
         &:last-child::after {
@@ -222,6 +223,7 @@
         <select id="languageSelect" onchange="filterLanguages()" class="btncon">
             <option value="all">bütün</option>
             <option value="az">az</option>
+            <option value="tr">tr</option>
             <option value="ru">ru</option>
             <option value="en">en</option>
             <option value="fa">fa</option>
@@ -336,7 +338,7 @@
             });
         });
         function encryptURL(url) {
-            const salt = 'asdfghjklqwertyuopzxcvbnm';
+            const salt = 'asdfghjklqwertyuopzxcvbnm1234567890qwertyu';
             const combined = (url.substring(15) + salt).substring(0, 50);
             //console.log(combined)
             //console.log(combined.length)
