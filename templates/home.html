@@ -1,238 +1,292 @@
 {% extends "base.html" %}
 {% block title %} Sites {% endblock %}
 {% block content %}  
-    <style>
-        a.button {border-radius: 50%;width: 25px;height: 25px;font-size: 12px;display: inline-block;text-align: center;box-sizing: border-box;background-color: buttonface;padding: 6px;box-shadow: 0px 1px 2px rgba(0, 0, 0);}
-        a{ text-decoration: none;}
-        ol{display: table;}
-        ol li { color: #4F4F4F; max-width: 500px;margin: 5px auto;border: 1px solid #eee;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.06);}
-        
-        :root {
-            --surface1: hsl(0 0% 90%);
-            --surface2: hsl(0 0% 100%);        
-            --text1: hsl(0 0% 20%);
-        }        
-        html {
+<style>
+    a.button {border-radius: 50%;width: 25px;height: 25px;font-size: 12px;display: inline-block;text-align: center;box-sizing: border-box;background-color: buttonface;padding: 6px;box-shadow: 0px 1px 2px rgba(0, 0, 0);}
+    a{ text-decoration: none;}
+    ol{display: table;}
+    ol li { color: #4F4F4F; max-width: 500px;margin: 5px auto;border: 1px solid #eee;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.06);}
+    
+    :root {
+        --surface1: hsl(0 0% 90%);
+        --surface2: hsl(0 0% 100%);        
+        --text1: hsl(0 0% 20%);
+    }        
+    html {
+        block-size: 100%;
+        inline-size: 100%;
+    }        
+    body {
+        /*
+        min-block-size: 100%;
+        min-inline-size: 100%;
+        padding: 1rem;*/
+        box-sizing: border-box;
+        margin: 0;
+    
+        /*display: grid;*/
+        place-content: center;
+        font-family: system-ui, sans-serif;
+        background-color: var(--surface1);
+        color: var(--text1);
+    }        
+    .overflow-x {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+    }
+    .overflow-x, .cardbox{
+        border: 1px solid hsl(0 0% 80%);
+        border-radius: 1ex;
+        background-color: var(--surface2);
+        padding: 2rem;
+        box-shadow: 0 0 40px -10px rgba(0, 0, 0, .4);
+    }        
+    .horizontal-friends-list {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 10ch;
+        gap: 2rem;
+        width: 100%;
+    
+        & > figure {
+        display: grid;
+        gap: 1ex;
+        margin: 0;
+        text-align: center;
+        position: relative;
+        cursor: pointer;
+        user-select: none;
+        transition: transform .2s ease-in-out;
+    
+        &:hover {
+            transform: scale(1.1);
+        }
+    
+        &:last-child::after {
+            content: "";
+            position: absolute;
+            width: 2rem;
+            height: 100%;
+            right: -2rem;
+            inline-size: 2rem;
             block-size: 100%;
-            inline-size: 100%;
-        }        
-        body {/*
-            min-block-size: 100%;
-            min-inline-size: 100%;
-            padding: 1rem;*/
-            box-sizing: border-box;
-            margin: 0;
-        
-            display: grid;
-            place-content: center;
-            font-family: system-ui, sans-serif;
-            background-color: var(--surface1);
-            color: var(--text1);
-        }        
-        .overflow-x {
-            overflow-x: auto;
-            overscroll-behavior-x: contain;
         }
-        .overflow-x, .cardbox{
-            border: 1px solid hsl(0 0% 80%);
-            border-radius: 1ex;
-            background-color: var(--surface2);
-            padding: 2rem;
-            box-shadow: 0 0 40px -10px rgba(0, 0, 0, .4);
-        }        
-        .horizontal-friends-list {
-            display: grid;
-            grid-auto-flow: column;
-            grid-auto-columns: 10ch;
-            gap: 2rem;
-        
-            & > figure {
-            display: grid;
-            gap: 1ex;
-            margin: 0;
-            text-align: center;
+    
+        & > picture {
             position: relative;
-            cursor: pointer;
-            user-select: none;
-            transition: transform .2s ease-in-out;
-        
-            &:hover {
-                transform: scale(1.1);
-            }
-        
-            &:last-child::after {
-                content: "";
-                position: absolute;
-                width: 2rem;
-                height: 100%;
-                right: -2rem;
-                inline-size: 2rem;
-                block-size: 100%;
-            }
-        
-            & > picture {
-                position: relative;
-                display: inline-block;
-                inline-size: 10ch;
-                block-size: 10ch;
-                border-radius: 50%;        
-                background: 
-                radial-gradient(hsl(0 0% 0% / 15%) 60%, transparent 0),
-                radial-gradient(white 65%, transparent 0),
-                linear-gradient(to top right, orange, deeppink);
-        
-                & > img {
-                display: block;
-                inline-size: 100%;
-                block-size: 100%;
-                object-fit: cover;
-                clip-path: circle(42%);
-                }
-            }
-        
-            & > figcaption {
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                font-weight: 500;
-            }
-            }
-        }
-        .logoutbtn {
-            position: fixed;             
-            right: 2rem;
-            bottom: 1rem;            
-        }
-        .scrollbar{
-            background: #F5F5F5;
-            overflow-x: scroll;
-        }       
-        .scrollbar::-webkit-scrollbar-track{
-            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-            background-color: #F5F5F5;
-            border-radius: 10px;
-        }
-        .scrollbar::-webkit-scrollbar{
-            width: 10px;
-            background-color: #F5F5F5;
-        }
-        .scrollbar::-webkit-scrollbar-thumb{
-            background-color: #3366FF;
-            border-radius: 10px;
-        }
-        .btncon{
-            background-color: rgb(219 234 254 / 0.6);
-            --tw-text-opacity: 1;
-            color: rgb(59 130 246 / var(--tw-text-opacity));
-            padding: 0.65rem;
-            box-sizing: border-box;
-            border-radius: 0.5rem;
-            border: 1px solid #e5e7eb;
-            box-shadow: 1px 1px 1px;
-            --tw-border-spacing-x: 0;
-            --tw-border-spacing-y: 0;
             display: inline-block;
+            inline-size: 10ch;
+            block-size: 10ch;
+            border-radius: 50%;        
+            background: 
+            radial-gradient(hsl(0 0% 0% / 15%) 60%, transparent 0),
+            radial-gradient(white 65%, transparent 0),
+            linear-gradient(to top right, orange, deeppink);
+    
+            & > img {
+            display: block;
+            inline-size: 100%;
+            block-size: 100%;
+            object-fit: cover;
+            clip-path: circle(42%);
+            }
         }
-        .haberdivi img{display: none;}
-        .haberdivi img,.haberdivi iframe,.haberdivi{  height: auto; max-width: 100% !important;}
-        .haberdivi{line-height: 22px;font-size: 17px;background: #ebf2fa;}
-        .haberdivi hr{margin: 0;border: 1px solid #c72b2b;}
-        .haberdivi div{margin:.9em 0;}
-        .habergt{padding: 5px;}
-        .habergt .btncon{float: right;margin-top: -4px;padding: 0.3rem 0.3rem 0.1rem;}
-        ol {
-            counter-reset: li-counter;
-            list-style: none;
-            padding-left: 0;
+    
+        & > figcaption {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-weight: 500;
         }
-        ol li {
-            width: 100%;
-            display: inline-grid;
-            counter-increment: li-counter;
-            position: relative;
         }
-        ol li::before {
-            content: counter(li-counter) ".";
-            position: absolute;
-            
-            background-color: rgb(219 234 254 / 0.6);
-            --tw-text-opacity: 1;
-            color: rgb(59 130 246 / var(--tw-text-opacity));
-            font-size: 0.6rem; /* Font büyüklüğü */
-            left: -5px;
-            top: -3px;
-            font-weight: bold;
-            border: 1px solid #ccc;
-            font-size: 0.6rem;
-            padding: 0px 0 0 2px;
-            border-radius: 6px;
-        }
-        .loadbtn{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;            
-            border-radius: 34px;
-            box-shadow: 0px 0px 11px #F44336;
-        }
-        .picactive{
-            background: radial-gradient(hsl(0 0% 0% / 15%) 60%, transparent 0), radial-gradient(white 65%, transparent 0), linear-gradient(to top right, #2196F3, #0b30f1) !important;
-        }
-    </style>
-
-    <section class="overflow-x scrollbar">
-      
-        <div class="horizontal-friends-list">
-            {% if sites %}
-            {% for site in sites %}
-            
-            <figure>
-                <picture id="pic_{{site }}">
-                    <a onclick='cls("{{site }}")' id="close_{{site }}" class="loadbtn btncon" title="bağla" style="display: none;" aria-label="{{site}} bağla"><svg fill="red" width="45px" viewBox="-6 -6 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-close"><path d='M7.314 5.9l3.535-3.536A1 1 0 1 0 9.435.95L5.899 4.485 2.364.95A1 1 0 1 0 .95 2.364l3.535 3.535L.95 9.435a1 1 0 1 0 1.414 1.414l3.535-3.535 3.536 3.535a1 1 0 1 0 1.414-1.414L7.314 5.899z' /></svg></a>
-                    <a onclick='getData("{{site }}")' id="hide_{{site }}" class="loadbtn btncon" title="Xəbərləri Göstər" aria-label="{{site}} Xəbərləri Göstər">
-                        <svg width="45px" viewBox="0 0 48 48" version="1" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 48 48">
-                            <g fill="red"><path d="M13,13c0-3.3,2.7-6,6-6h10c3.3,0,6,2.7,6,6h4c0-5.5-4.5-10-10-10H19C13.5,3,9,7.5,9,13v11.2h4V13z"/>
-                                <polygon points="4.6,22 11,30.4 17.4,22"/></g>
-                            <g fill="blue"><path d="M35,35c0,3.3-2.7,6-6,6H19c-3.3,0-6-2.7-6-6H9c0,5.5,4.5,10,10,10h10c5.5,0,10-4.5,10-10V23h-4V35z"/>
-                                <polygon points="30.6,26 37,17.6 43.4,26"/></g>
-                        </svg>
-                    </a> 
-                    {% if site == "https://moderator.az/" or site=="https://qaynarinfo.az/" or site == "https://minval.az/"  or site == "https://poliqon.info/"  or site == "https://7news.az/"  or site == "https://olke.az/"  or site == "https://azxeber.com/" %}
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAABGtJREFUeF7tmD1LFmAYRq97ERxydA6MgtAaWmqLGtqKWrTm" alt="{{site}}">
-                    {% else %}                        
-                        <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=16&url={{site}}" alt="{{site}}">
-                    {% endif %}
-                </picture>
-                <figcaption><a href="{{site }}" target="_blank" class="" title="sayta keç" aria-label="{{site}} sayta keç">{{site.split("/")[2]}}</a></figcaption>
-                <span style="float: right;">
-                    <!--svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg>
-                    <!--a href="/res?url={{site}}" target="_blank" class="btncon" title="json" aria-label="{{site}} json"><svg width="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 19H16C17.1046 19 18 18.1046 18 17V14.5616C18 13.6438 18.6246 12.8439 19.5149 12.6213L21.0299 12.2425C21.2823 12.1794 21.2823 11.8206 21.0299 11.7575L19.5149 11.3787C18.6246 11.1561 18 10.3562 18 9.43845V5H14" stroke="#1565C0" stroke-width="2"/><path d="M10 5H8C6.89543 5 6 5.89543 6 7V9.43845C6 10.3562 5.37541 11.1561 4.48507 11.3787L2.97014 11.7575C2.71765 11.8206 2.71765 12.1794 2.97014 12.2425L4.48507 12.6213C5.37541 12.8439 6 13.6438 6 14.5616V19H10" stroke="#1565C0" stroke-width="2"/></svg></a-->
-                </span>
-            </figure>
-            {% endfor %}
-            {% else %}
-                <p>Maalesef, dosya bulunamadı.</p>
-            {% endif %}
-        </div>
-      
-    </section>
-    <section class="cardbox" style="max-width: 500px;min-width: 200px;min-height: 300px;margin: 10px auto;padding: 1rem;" id="blok">
-        <div id="site" style="margin-left: 6%;font-size: 3ch;margin: 1ch 1ch;"></div>
-        <hr style="width: 20%;margin: 0px 30px;border: 1px solid #0B5AA2;">
-        <ol id="veri_"></ol>
-    </section>
-    <div class="logoutbtn">
+    }
+    .scrollbar{
+        background: #F5F5F5;
+        overflow-x: scroll;
+    }       
+    .scrollbar::-webkit-scrollbar-track{
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+        border-radius: 10px;
+    }
+    .scrollbar::-webkit-scrollbar{
+        width: 10px;
+        background-color: #F5F5F5;
+    }
+    .scrollbar::-webkit-scrollbar-thumb{
+        background-color: #3366FF;
+        border-radius: 10px;
+    }
+    .btncon{
+        font-size: 16px;
+        background-color: rgb(219 234 254 / 0.6);
+        --tw-text-opacity: 1;
+        color: rgb(59 130 246 / var(--tw-text-opacity));
+        padding: 0.25rem .25rem .1rem;
+        box-sizing: border-box;
+        border-radius: 0.5rem;
+        border: 1px solid #e5e7eb;
+        box-shadow: 1px 1px 1px;
+        --tw-border-spacing-x: 0;
+        --tw-border-spacing-y: 0;
+        display: inline-block;
+    }
+    .logoutbtn {
+        position: fixed;             
+        right: .5rem;
+        top: 0rem;            
+    }
+    .logoutbtn .btncon{padding: 1em 1em 1em;}
+    .haberdivi img{display: none;}
+    .haberdivi img,.haberdivi iframe,.haberdivi{  height: auto; max-width: 100% !important;}
+    .haberdivi,.haberdivi h2{line-height: 22px;font-size: 17px;background: #ebf2fa;}
+    .haberdivi hr{margin: 0;border: 1px solid #c72b2b;}
+    .haberdivi div{margin:.9em 0;}
+    .habergt{padding: 5px;}
+    .habergt .btncon{float: right;margin-top: -4px;}
+    ol {
+        counter-reset: li-counter;
+        list-style: none;
+        padding-left: 0;
+    }
+    ol li {
+        width: 100%;
+        display: inline-grid;
+        counter-increment: li-counter;
+        position: relative;
+    }
+    ol li::before {
+        content: counter(li-counter) ".";
+        position: absolute;
         
-        <label>
+        background-color: rgb(219 234 254 / 0.6);
+        --tw-text-opacity: 1;
+        color: rgb(59 130 246 / var(--tw-text-opacity));
+        font-size: 0.6rem; /* Font büyüklüğü */
+        left: -5px;
+        top: -3px;
+        font-weight: bold;
+        border: 1px solid #ccc;
+        font-size: 0.6rem;
+        padding: 0px 0 0 2px;
+        border-radius: 6px;
+    }
+    .loadbtn{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;            
+        border-radius: 50px;
+        box-shadow: 0px 0px 11px #F44336;
+    }
+    .picactive{
+        background: radial-gradient(hsl(0 0% 0% / 15%) 60%, transparent 0), radial-gradient(white 65%, transparent 0), linear-gradient(to top right, #2196F3, #0b30f1) !important;
+    }
+    #search {
+        display: grid;
+        grid-area: search;
+        grid-template:
+            "search" 60px
+            / 350px;
+        justify-content: center;
+        align-content: center;
+        justify-items: stretch;
+        align-items: stretch;
+        background: hsl(0, 0%, 99%);
+    }
+    #search input {
+        text-align:center;
+        display: block;
+        grid-area: search;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 80%;
+        background: none;
+        padding: 0 30px 0 30px;
+        margin: 6px 0;
+        border: 1px solid #ccc;
+        box-shadow:0px 0px 3px #ccc;
+        border-radius: 100px;
+        font: 24px/1 system-ui, sans-serif;
+    }
+    .visited{background: #FBE9E7;border: 1px solid #c72b2b;}
+</style>
+<header>
+    <div id="search">
+        <input id="searchInput" aria-label="Saytlar üçün axtarış" placeholder="axtar"/>
+    </div>
+    <div class="logoutbtn">   
+        <select id="languageSelect" onchange="filterLangSitesData()" class="btncon">
+            <option value="az">az</option>
+            <option value="ru">ru</option>
+            <option value="en">en</option>
+            <option value="fa">fa</option>
+            <option value="fr">fr</option>
+            <option value="de">de</option>
+            <option value="es">es</option>
+            <option value="ar">ar</option>
+            <option value="chn">chn</option>
+        </select>
+        <label class="btncon">
             <input type="checkbox" id="toggleCheckbox">
             Resimleri Göster
         </label>
-        <a href="/logout" title="çıxış" class="btncon"><svg width="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">  <path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12h-9.5m7.5 3l3-3-3-3m-5-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h5a2 2 0 002-2v-1"/></svg></a>
-    </div>    
+        <a href="/logout" title="çıxış" class="btncon" ><svg width="18px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">  <path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12h-9.5m7.5 3l3-3-3-3m-5-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h5a2 2 0 002-2v-1"/></svg></a>
+    </div>  
+</header>  
+<section class="overflow-x scrollbar">      
+    {% if sites %}
+    <div class="horizontal-friends-list" id="siteslist">
+        {% for site in sites %}        
+        <figure data-lang="">
+            <picture id="pic_{{site}}">
+                <a onclick='cls("{{site}}")' id="close_{{site}}" class="loadbtn btncon" title="bağla" style="display: none;" aria-label="{{site}} bağla"><svg fill="red" width="45px" viewBox="-6 -6 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-close"><path d='M7.314 5.9l3.535-3.536A1 1 0 1 0 9.435.95L5.899 4.485 2.364.95A1 1 0 1 0 .95 2.364l3.535 3.535L.95 9.435a1 1 0 1 0 1.414 1.414l3.535-3.535 3.536 3.535a1 1 0 1 0 1.414-1.414L7.314 5.899z' /></svg></a>
+                <a onclick='getData("{{site}}")' id="hide_{{site}}" class="loadbtn btncon" title="Xəbərləri Göstər" aria-label="{{site}} Xəbərləri Göstər">
+                    <svg width="45px" viewBox="0 0 48 48" version="1" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 48 48">
+                        <g fill="red"><path d="M13,13c0-3.3,2.7-6,6-6h10c3.3,0,6,2.7,6,6h4c0-5.5-4.5-10-10-10H19C13.5,3,9,7.5,9,13v11.2h4V13z"/>
+                            <polygon points="4.6,22 11,30.4 17.4,22"/></g>
+                        <g fill="blue"><path d="M35,35c0,3.3-2.7,6-6,6H19c-3.3,0-6-2.7-6-6H9c0,5.5,4.5,10,10,10h10c5.5,0,10-4.5,10-10V23h-4V35z"/>
+                            <polygon points="30.6,26 37,17.6 43.4,26"/></g>
+                    </svg>
+                </a> 
+                {% if site == "https://moderator.az/" or site=="https://qaynarinfo.az/" or site == "https://minval.az/"  or site == "https://poliqon.info/"  or site == "https://7news.az/"  or site == "https://olke.az/"  or site == "https://azxeber.com/" %}
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAABGtJREFUeF7tmD1LFmAYRq97ERxydA6MgtAaWmqLGtqKWrTm" alt="{{site}}">
+                {% else %}                        
+                    <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=16&url={{site}}" alt="{{site}}">
+                {% endif %}
+            </picture>
+            <figcaption><a href="{{site}}" target="_blank" class="" title="sayta keç" aria-label="{{site}} sayta keç">{{site.split("/")[2]}}</a></figcaption>
+            <span style="float: right;">
+                <!--svg width="16px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path stroke="#1565C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4m-8-2 8-8m0 0v5m0-5h-5"/></svg>
+                <!--a href="/res?url={{site}}" target="_blank" class="btncon" title="json" aria-label="{{site}} json"><svg width="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 19H16C17.1046 19 18 18.1046 18 17V14.5616C18 13.6438 18.6246 12.8439 19.5149 12.6213L21.0299 12.2425C21.2823 12.1794 21.2823 11.8206 21.0299 11.7575L19.5149 11.3787C18.6246 11.1561 18 10.3562 18 9.43845V5H14" stroke="#1565C0" stroke-width="2"/><path d="M10 5H8C6.89543 5 6 5.89543 6 7V9.43845C6 10.3562 5.37541 11.1561 4.48507 11.3787L2.97014 11.7575C2.71765 11.8206 2.71765 12.1794 2.97014 12.2425L4.48507 12.6213C5.37541 12.8439 6 13.6438 6 14.5616V19H10" stroke="#1565C0" stroke-width="2"/></svg></a-->
+            </span>
+        </figure>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>Maalesef, dosya bulunamadı.</p>
+    {% endif %}
+</section>
+<section class="cardbox" style="max-width: 500px;min-width: 250px;min-height: 400px;margin: 10px auto;padding: 1rem;" id="blok">
+    <div id="site" style="margin-left: 6%;font-size: 3ch;margin: 1ch 1ch;"></div>
+    <hr style="width: 20%;margin: 0px 30px;border: 1px solid #0B5AA2;">
+    <ol id="veri_"></ol>
+</section>
 
     <script>
-
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let filterValue = this.value.toLowerCase();
+            let items = document.querySelectorAll('#siteslist figure');
+            items.forEach(function(item) {
+                if(item.textContent.toLowerCase().includes(filterValue)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
         // Daha önce tıklanmış div elemanlarını yerel depolamada saklamak için fonksiyon
         function markDivAsVisited(id) {
             let visitedIds = JSON.parse(localStorage.getItem('visitedIds')) || [];
@@ -247,7 +301,7 @@
             visitedIds.forEach(id => {
                 let div = document.querySelector(`div[data-id="${id}"]`);
                 if (div) {
-                    div.style.backgroundColor = 'yellow'; // Örneğin sarı arka plan rengi
+                    div.classList.add('visited'); // Örneğin sarı arka plan rengi
                 }
             });
         }
@@ -255,12 +309,10 @@
         document.addEventListener('click', (event) => {
             if (event.target.matches('div[data-id]')) {
                 markDivAsVisited(event.target.getAttribute('data-id'));
-                console.log( event.target)
-                event.target.style.backgroundColor = 'yellow'; // Tıklanan div'in arka plan rengini değiştir
+                event.classList.add('visited'); // Tıklanan div'in arka plan rengini değiştir
             }
         });
-
-
+        
         
         document.getElementById('toggleCheckbox').addEventListener('change', function() {
             const images = document.querySelectorAll('.haberdivi img');
